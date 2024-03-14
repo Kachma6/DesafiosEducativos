@@ -1,0 +1,30 @@
+.ctn-barra-repaso{
+    display: flex;
+    border: 1px solid #dbdbdc;
+    padding: 2px 20px;
+    border-radius: 16px;
+}
+.ctn-barra-title{
+
+   font-size: 0.7em;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: gray;
+}
+.c-repaso{
+    margin: 6px;
+    width: 15px;
+    height: 15px;
+    border-radius: 8px;
+    background-color: #BAC5F4;
+    
+}
+.c-repaso.done{
+  
+    background-color: #6370ab;
+}
+.c-repaso.no-done{
+    
+    background-color: #e9ebf4;
+}

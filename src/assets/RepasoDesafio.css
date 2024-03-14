@@ -1,0 +1,36 @@
+.ctn-repaso{
+    box-sizing: border-box;
+    height: 90vh;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../Images/bg-2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: hue-rotate(300deg);
+}
+.resumen-repaso{
+    margin: 20px ;
+    display: flex;
+}
+.resumen-repaso div{
+    padding: 16px;
+    margin: 8px;
+    border-radius: 16px;
+    /* background-color: #BAC5F4; */
+}
+.correct{
+ background-color: #7488de;
+}
+.incorrect{
+    background-color: #ce9b05;
+}
+.repaso-end{
+    padding: 30px;
+    width: 50%;
+    margin: 20px;
+    border-radius: 16px;
+    background-color: white;
+}

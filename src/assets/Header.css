@@ -1,0 +1,47 @@
+.ctn-header-component{
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  height: 100%;
+ 
+}
+
+.ctn-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-right: 8%;
+ 
+}
+.name{
+ margin: 5px 20px;
+  
+}
+.name-icon{
+  
+  
+  padding: 5px;
+  border-radius: 50%;
+
+  background-color:#BAC5F4;
+  
+}
+.ctn-icon{
+  
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8em;
+  color: #6374bc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+ 
+}
+.ctn-icon h1{
+  text-shadow: 0 4px  rgba(97, 97, 97, 0.1);
+}

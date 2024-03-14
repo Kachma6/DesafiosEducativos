@@ -1,0 +1,37 @@
+.ctn-menu{
+    padding: 0;
+    border-radius: 20px;
+    background-color:white;
+    font-size: 0.8em;
+}
+.ctn-menu-header{
+    padding: 16px;
+}
+.ctn-menu nav{
+    /* width: 100%; */
+}
+.ctn-menu ul{
+   padding: 0px;
+   margin: 0px;
+}
+.ctn-menu li{
+    
+    list-style: none;
+    padding: 16px;
+    margin: 8px  24px;
+    display: flex;
+   
+}
+.ctn-menu li a{
+    color: black;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+
+.ctn-menu li.clicked{
+    background-color: #E9E9F1;
+    
+    
+    border-radius: 25px;
+}

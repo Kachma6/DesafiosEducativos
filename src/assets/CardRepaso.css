@@ -1,0 +1,37 @@
+.card-repaso{
+    box-sizing: border-box;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgb(0, 0, 0, 25%);
+    border-radius: 24px;
+}
+.card-header{
+    background-color: #BAC5F4;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px 24px 0 0;
+}
+.card-body{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.card-pregunta{
+    padding:6px 10px;
+    font-style: italic ;
+    color: gray;
+    font-size: 0.8em;
+}
+.card-pregunta-text{
+   padding: 6px 10px;
+   font-style: italic ;
+}
+.card-form form{
+   text-align: end;
+}

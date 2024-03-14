@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { LoginPage } from './Pages/LoginPage'
+import { HomePage } from './Pages/HomePage'
+
+import { NoPage } from './Pages/NoPage'
+import { MisDesafios } from './Pages/MisDesafios'
+import { DesafiosJoin } from './Pages/DesafiosJoin'
+import { RepasoDesafio } from './Pages/RepasoDesafio'
+import { FormCreateDesafio } from './Pages/FormCreateDesafio'
+import { CreateNewUser } from './Pages/CreateNewUser'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/:user_id' element={<HomePage />} />
+        {/* <Route path='home' element={} /> */}
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/create-count' element={<CreateNewUser/>}/>
+        <Route path='*' element={<NoPage />} />
+        <Route path='/:user_id/mis-desafios' element={<MisDesafios/>}/>
+        <Route path='/:user_id/mis-desafios/create' element={<FormCreateDesafio/>}/>
+        <Route path='/:user_id/mis-desafios/:desafio_id' />
+        <Route path='/:user_id/desafios-join' element={<DesafiosJoin/>}/>
+        <Route path='/:user_id/desafios-join/:desafio_id' element={<RepasoDesafio/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
