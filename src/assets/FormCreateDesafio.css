@@ -1,3 +1,47 @@
-.ctn-form{
+.form-create-desafio{
     padding: 20px;
+}
+
+.form-create-desafio-two{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.form-create-desafio-separador{
+    width: 100%;
+    margin: 30px 0 0 0 ;
+    height: 1px;
+    background-color: rgb(217, 217, 217);
+}
+.ctn-user-title-options{
+    display: block;
+}
+.form-create-desafio-btn{
+    margin: 30px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+}
+.message-error{
+    color: red;
+    font-style: italic;
+    font-size: 0.8rem;
+    margin-left: 20px;
+}
+.code{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ 
+}
+
+@media screen and (max-width: 600px) {
+    .form-create-desafio-two{
+        display:block;
+        grid-template-columns: none;
+        
+    }
 }

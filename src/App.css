@@ -1,11 +1,39 @@
+:root{
+    --main-color: black;
+}
 #root {
  box-sizing: border-box;
  background-color: white;
  height: 100vh;
-padding: 10px;
 
- 
-  
 }
 
+.ctn-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
 
+.btn{
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid black;
+    padding: 8px 24px;
+    margin: 8px;
+    background-color: var(--main-color);
+    color: white;
+}
+.btn.icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.btn.secondary{
+    padding: 4px;
+    border-radius: 4px;
+   
+    
+    
+}

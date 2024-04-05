@@ -1,67 +1,113 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
+import '../assets/CardShow.css'
+import Avatar from '@mui/material/Avatar';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 export const CardShow = ({ cardData, index, editar, eliminar }) => {
-    const [card, setCard] = useState({
-
-        question: cardData.question,
-        answer: cardData.answer
-
+    const myCard = cardData
+    const [ cardAux , setCardAux] = useState({
+       myCard
     })
-
-    const onChangeQuestion = (e) => {
-        setCard({
-            ...card,
-            question: e.target.value
-        })
-
+    const [isOnBlur, setIsOnBlur] = useState(true);
+    const [ isValidation, setIsValidation] = useState({
+        answer: false,
+        question: false
+})
+    useEffect(()=>{
+        setCardAux(cardData)
+    }, [cardData])
+    const onChangeCardAux = (e) => {
+        setCardAux({...cardAux, question: e.target.value})
+        editar(index, cardAux)
+    } 
+    const onChangeCardAux2 = (e) => {
+        setCardAux({...cardAux, answer: e.target.value})
+        editar(index, cardAux)
     }
-    const onChangeAnswer = (e) => {
-        setCard({
-            ...card,
-            answer: e.target.value
-        })
-
-    }
-
     const eliminarCard = (e) => {
         e.preventDefault();
+       
         eliminar();
+        
     }
     const editarCard = (e) => {
         e.preventDefault();
-        editar(index, card)
+        editar(index, cardAux)
     }
-    return (
-        <div className='card'>
-            <form>
-                <TextField
+    const onHandleBlur = () => {
+        console.log("onblour", cardAux)
+        console.log(isOnBlur)
+        validarInputs();
+        editar(index, cardAux)
+    }
+    const validarInputs = () => {
+        let cardsAuxiliar = isValidation;
+        for(let value in cardAux){
+            if(cardAux[value]===''){
+                cardsAuxiliar[value] = true
+            }else{
+                cardsAuxiliar[value]= false
+            }
+        }
 
-                    margin="dense"
-                    id="answer"
-                    name="Codigo"
+        setIsValidation(cardsAuxiliar)
+        console.log("is validation",isValidation)
+       
+    }
+    
+    return ( 
+        <div className='card-show'>
+            <div className='card-show-header'>
+            <div>
+           Tarjeta : {index+1}
+            </div>
+            <div className='ctn-card-btns'>
+                <Avatar sx={{ bgcolor: "black" }} onClick={eliminarCard}>
+                     <DeleteForeverIcon />
+                 </Avatar>
+                </div>
+            </div>
+            <form >
+                <TextField
+                    autoFocus
+                    margin="normal"
+                    id="question"
+                    name="question"
                     label="Pregunta"
                     type="text"
                     fullWidth
                     variant="outlined"
-                    value={card.question}
-                    onChange={onChangeQuestion}
+                    inputProps={{ maxLength: 200 }}
+                    value={cardAux.question}
+                    onChange={onChangeCardAux}
+                    onBlur={onHandleBlur}
+                    error={isValidation.question}
+                    helperText={isValidation.question ? 'Por favor llene el campo': ''}
+                    multiline
                 />
                 <TextField
 
-                    margin="dense"
+                    margin="normal"
                     id="answer"
-                    name="Codigo"
+                    name="answer"
                     label="Respuesta"
                     type="text"
                     fullWidth
                     variant="outlined"
-                    value={card.answer}
-                    onChange={onChangeAnswer}
+                    inputProps={{ maxLength: 100 }}
+                    value={cardAux.answer}
+                     onChange={onChangeCardAux2}
+                     onBlur={onHandleBlur}
+                     error={isValidation.answer}
+                    helperText={isValidation.answer ? 'Por favor llene el campo': ''}
+                   multiline
                 />
                
-                <button className='btn' onClick={editarCard}>Guardar Cambios</button>
-                <button className='btn' onClick={eliminarCard}>Eliminar</button>
+                {/* <button className='btn' onClick={editarCard}>Guardar Cambios</button> */}
+              
+               
             </form>
+           
         </div>
     )
 }

@@ -19,7 +19,7 @@ export const HomePage = () => {
     <div className='ctn-home-page'>
 
       <div className='ctn-header'>
-        <Header userId = {user_id}/>
+        <Header user={user}/>
       </div>
       <div className='ctn-dashboard'> 
         <div className='ctn-navegacion'>

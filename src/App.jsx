@@ -10,6 +10,7 @@ import { DesafiosJoin } from './Pages/DesafiosJoin'
 import { RepasoDesafio } from './Pages/RepasoDesafio'
 import { FormCreateDesafio } from './Pages/FormCreateDesafio'
 import { CreateNewUser } from './Pages/CreateNewUser'
+import { FormEditDesafio } from './Pages/FormEditDesafio'
 
 function App() {
 
@@ -23,9 +24,9 @@ function App() {
         <Route path='*' element={<NoPage />} />
         <Route path='/:user_id/mis-desafios' element={<MisDesafios/>}/>
         <Route path='/:user_id/mis-desafios/create' element={<FormCreateDesafio/>}/>
-        <Route path='/:user_id/mis-desafios/:desafio_id' />
+        <Route path='/:user_id/mis-desafios/:desafio_id' element={<FormEditDesafio/>}/>
         <Route path='/:user_id/desafios-join' element={<DesafiosJoin/>}/>
-        <Route path='/:user_id/desafios-join/:desafio_id' element={<RepasoDesafio/>}/>
+        <Route path='/:user_id/desafios-join/:desafio_id/desa-created/:desa_id' element={<RepasoDesafio/>}/>
       </Routes>
     </BrowserRouter>
   )

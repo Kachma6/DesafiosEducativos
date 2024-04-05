@@ -1,0 +1,22 @@
+.ctn-form-register{
+   
+    height: 100%;
+  
+}
+.ctn-form{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    
+}
+.ctn-form-text{
+    margin: 20px 0;
+    
+}
+.ctn-form-text div:first-child{
+  font-size: 1.7em;
+}
+.ctn-form-text div:last-child{
+    font-size: 0.8em;
+    color: grey;
+  }

@@ -1,30 +1,44 @@
-.ctn-barra-repaso{
+.ctn-barra{
     display: flex;
-    border: 1px solid #dbdbdc;
-    padding: 2px 20px;
-    border-radius: 16px;
+    margin-top: 10px;
+}
+.ctn-barra-repaso{
+    width: 95%;
+    border-radius: 3px;
+    
+}
+.ctn-barra-repaso div{
+    display: flex;
+    width: 100%;
 }
 .ctn-barra-title{
-
+   
    font-size: 0.7em;
+   width: 5%;
+   margin-left: 3px;
    display: flex;
-   justify-content: center;
    align-items: center;
-   color: gray;
+   justify-content: center;
+   
+  
+   color: rgb(74, 74, 74);
+   /* border: 1px solid gray; */
+   
 }
 .c-repaso{
-    margin: 6px;
-    width: 15px;
-    height: 15px;
-    border-radius: 8px;
-    background-color: #BAC5F4;
+    margin: 6px 1px;
+    min-width: 15px;
+    
+    height: 5px;
+    border-radius: 2px;
+    background-color: #ffffff;
     
 }
 .c-repaso.done{
   
-    background-color: #6370ab;
+    background-color: #131313;
 }
 .c-repaso.no-done{
     
-    background-color: #e9ebf4;
+    background-color: #ffffff;
 }

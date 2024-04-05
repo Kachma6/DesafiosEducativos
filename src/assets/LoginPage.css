@@ -5,7 +5,7 @@
     background-image: url('../Images/bg-2.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    filter: hue-rotate(300deg);
+   
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,9 +1,14 @@
 .ctn-desafio{
+  
+  
+}
+.btn-options{
+ margin: 6px;
+}
+.btn-options:hover{
+    color: black;
     background-color: white;
-    box-shadow:  0px 4px 4px rgb(0, 0, 0, 25%);
-    border-radius: 20px;
-    padding: 20px;
-    margin: 16px;
+}
+.ctn-btn-options{
     display: flex;
-    justify-content: space-between;
 }

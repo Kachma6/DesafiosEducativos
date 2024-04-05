@@ -1,37 +1,137 @@
-.card-repaso{
+
+
+.ctn-card-repaso{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.card-repaso , .card-repaso-detras{
     box-sizing: border-box;
     width: 50%;
-    height: 50%;
-    background-color: white;
-    box-shadow: 0px 4px 4px rgb(0, 0, 0, 25%);
-    border-radius: 24px;
+    height: 90%;
+    margin-top: 24px;
+    
+    border-radius: 10px;
+    padding: 20px;
 }
-.card-header{
-    background-color: #BAC5F4;
+.card-repaso.ocultar, .card-repaso-detras.ocultar{
+    display: none;
+}
+/* .card-header{
+   
     width: 100%;
     height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 24px 24px 0 0;
-}
+    border-radius: 10px 10px 0 0;
+} */
 .card-body{
-    padding: 20px;
+    height: 100%;
     display: flex;
     flex-direction: column;
+}
+.card-body-part{
+    height: 50%;
+    padding: 20px;
+  
     
+}
+.card-body-part.pregunta{
+    
+   
+    border-bottom: 1px solid rgb(206, 206, 206);
+}
+.card-body-part.respuesta{
+   
+}
 
+.card-body-part.pregunta .card-body-title{
+    font-style: italic;
+    font-size: 0.7em;
+} 
+.card-body-part.pregunta .card-body-text{
+    font-size: 2em;
+    
 }
-.card-pregunta{
-    padding:6px 10px;
-    font-style: italic ;
-    color: gray;
-    font-size: 0.8em;
+.card-body-part.respuesta .card-body-title{
+    font-style: italic;
+    font-size: 0.7em;
+} 
+
+
+@media (max-width: 900px) {
+    .ctn-card-repaso{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }
+    .card-repaso ,.card-repaso-detras{
+        box-sizing: border-box;
+        width: 70%;
+        height: 80%;
+        box-shadow: none;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        align-items: normal;
+        justify-content: space-between;
+    }
 }
-.card-pregunta-text{
-   padding: 6px 10px;
-   font-style: italic ;
-}
-.card-form form{
-   text-align: end;
+@media (max-width: 600px) {
+    .ctn-card-repaso{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }
+    .card-repaso, .card-repaso-detras{
+        box-sizing: border-box;
+        width: 90%;
+        height: 80%;
+        box-shadow: none;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        align-items: normal;
+        justify-content: space-between;
+    }
+    /* .card-header{
+        
+        width: 100%;
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px 10px 0 0;
+    } */
+    .card-body{
+        height: 100%;
+        padding: 0px;
+        display: flex;
+        box-sizing: border-box;
+     
+        justify-content: space-around;
+       
+        
+    
+    }
+    .card-pregunta{
+        padding:6px 10px;
+        font-style: italic ;
+        color: gray;
+        font-size: 0.8em;
+    }
+    .card-pregunta-text{
+       padding: 6px 10px;
+       font-style: italic ;
+    }
+    .card-form form{
+       text-align: end;
+    }
+    
 }
