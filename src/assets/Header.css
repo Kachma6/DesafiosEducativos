@@ -43,8 +43,25 @@
   margin-left: 10%;
  
 }
-.ctn-icon h1{
-  text-shadow: 0 4px  rgba(97, 97, 97, 0.1);
+.ctn-icon .icon{
+  font-size: 3em;
+  font-family: "Jersey 20", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  text-shadow: -2px -2px 2px rgb(197, 194, 194);
+  letter-spacing: 12px;
+}
+.ctn-icon .icon.uno{
+  color: rgb(207, 108, 237);
+}
+.ctn-icon .icon.dos{
+  color: rgb(101, 101, 234);
+}
+.ctn-icon .icon.tres{
+  color: rgb(114, 192, 119);
+}
+.ctn-icon .icon.cuatro{
+  color: gold;
 }
 .ctn-header-icon-menu{
   display: none;
@@ -94,6 +111,11 @@
     align-items: center;
     margin-left: 10%;
    
+  }
+  .ctn-icon .icon{
+   
+    text-shadow: none;
+
   }
   .ctn-icon h1{
     text-shadow: 0 4px  rgba(97, 97, 97, 0.1);

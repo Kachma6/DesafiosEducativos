@@ -1,105 +1,99 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Button from '@mui/material/Button';
+import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { suscribeDesafio} from '../apis/UserApi'
-import { useParams } from 'react-router-dom';
-import '../assets/Suscribe.css';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-export const Suscribe = () =>{
-  const [open, setOpen] = useState(false);
-  const {user_id} = useParams();
-  const [codigo, setCodigo] = useState('');
-  const [estadoPeticion, setEstadoPeticion] = useState(true)
-  const [open1, setOpen1] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+import { suscribeDesafio } from '../apis/UserApi'
+import { AlertStatus } from './AlertStatus';
+import '../assets/Suscribe.css';
+
+export const Suscribe = ( { update = ()=>{console.log("Actualizando")}} ) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
+  const { user_id } = useParams();
+  const [code, setCode] = useState('');
+  const [showAlert, setShowAlert] = useState({
+    type: '',
+    message: ''
+  })
+
   const handleForm = async (e) => {
     console.log("entro aqui")
     e.preventDefault();
-    let data = {
-        code:codigo,
-        user:{
-             id: user_id,
-             rol:"USER"
+
+
+    if (code === '') {
+      console.log("entra a codigo vacio")
+      setShowAlert({
+        type: 'info',
+        message: 'No ha introducido un codigo valido!'
+      });
+      setOpenAlert(true)
+
+    } else {
+      let data = {
+        code: code,
+        user: {
+          id: user_id,
+          rol: "USER"
         }
+      }
+      const response = await suscribeDesafio(data);
+      if (response.status == 200) {
+        setShowAlert({
+          type: 'success',
+          message: 'Se ha inscrito correctamente a este desafio!'
+        })
+        setOpenAlert(true)
+        update();
+
+      } else {
+        setShowAlert({
+          type: 'error',
+          message: 'Ha ocurrido un error vuelve a intentarlo'
+        })
+        setOpenAlert(true)
+      }
     }
-    
-    const response = await suscribeDesafio(data);
-    console.log(response)
-    if(response.status == 200){
-      setEstadoPeticion(true);
-      setOpen1(true)
-
-    }else{
-      setEstadoPeticion(false);
-      setOpen1(true)
-
-      console.log(response.status)
-    }
-    setOpen(false);
-    setCodigo('');
-}
-  const handleClose = () => {
-    setOpen(false);
-    
-  };
-
-
-
-
+    setOpenModal(false);
+    setCode('');
+  }
   
- 
-  const handleClose1 = (event, reason) => {
+  const handleCloseAlert = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
-    setOpen1(false);
+    setOpenAlert(false);
   };
   return (
     <React.Fragment>
 
       <div className='ctn-suscribe'>
         <div className='ctn-suscribe-title'>Se parte de un desafio de aprendizaje!</div>
-       
-        <button className='btn-suscribe' onClick={handleClickOpen}>
-         
-          <span>Inscribirse</span>       
+        <button className='btn-suscribe' onClick={()=>setOpenModal(true)}>
+          <span>Inscribirse</span>
         </button>
-        <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
-        <Alert
-          onClose={handleClose1}
-          severity={ estadoPeticion? "success":"error"}
-          variant='filled'
-          sx={{ width: '100%' }}
-        >
-          {estadoPeticion? "Se ha inscrito al desafio correctamente.":  "Ya esta inscrito, u ocurrio algun problema."}
-        </Alert>
-      </Snackbar>
+        {/* <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+          <Alert
+            onClose={handleCloseAlert}
+            severity={showAlert.type}
+            sx={{ width: '100%' }}
+          >
+            {showAlert.message}
+          </Alert>
+        </Snackbar> */}
+        <AlertStatus open={openAlert}  status={showAlert.type} message={showAlert.message}/>
       </div>
-      
+
       <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: 'form',
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
+        open={openModal}
+        onClose={()=>setOpenModal(false)}
       >
         <DialogTitle>Inscribirse a un Desafio</DialogTitle>
         <DialogContent>
@@ -116,12 +110,12 @@ export const Suscribe = () =>{
             type="text"
             fullWidth
             variant="outlined"
-            defaultValue={codigo}
-            onChange={(e)=>setCodigo(e.target.value)}
+            defaultValue={code}
+            onChange={(e)=>setCode(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
+          <button className='btn secondary' onClick={()=>setOpenModal(false)}>Cancelar</button>
           <button className='btn' type="submit" onClick={handleForm}>Inscribirse</button>
         </DialogActions>
       </Dialog>

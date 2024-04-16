@@ -9,6 +9,7 @@ import DeleteDesafioConfirm from '../Component/DeleteDesafioConfirm';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ShareCode from '../Component/ShareCode'
 export const DesafioCreated = ({ desafio, eliminar, color }) => {
 
   const { user_id } = useParams();
@@ -37,7 +38,6 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
 
   }
 
-  console.log(desafio)
 
   return (
     <div className='ctn-desafio' style={{ background: color.back }}>
@@ -61,11 +61,15 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
               'aria-labelledby': 'basic-button',
             }}
           >
+               
+            <ShareCode code={desafio.code}/>
+            
             <MenuItem onClick={editar} className='menu-item'>
               <EditIcon /> <span>Editar</span>
             </MenuItem>
 
             <DeleteDesafioConfirm eliminar={() => eliminar(desafio.id)} idDesafio={desafio.id} type={1} />
+
 
 
           </Menu>

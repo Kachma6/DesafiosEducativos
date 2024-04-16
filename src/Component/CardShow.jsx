@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import '../assets/CardShow.css'
 import Avatar from '@mui/material/Avatar';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { getColor} from '../assets/colors.js'
 export const CardShow = ({ cardData, index, editar, eliminar }) => {
     const myCard = cardData
     const [ cardAux , setCardAux] = useState({
@@ -54,9 +55,9 @@ export const CardShow = ({ cardData, index, editar, eliminar }) => {
         console.log("is validation",isValidation)
        
     }
-    
+    console.log("get color",getColor());
     return ( 
-        <div className='card-show'>
+        <div className='card-show' >
             <div className='card-show-header'>
             <div>
            Tarjeta : {index+1}

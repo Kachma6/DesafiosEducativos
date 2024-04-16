@@ -1,11 +1,10 @@
 import React from 'react'
-import '../assets/Menu.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import '../assets/Menu.css'
 export const Menu = ({ estado }) => {
   const { user_id } = useParams();
   const navigate = useNavigate();

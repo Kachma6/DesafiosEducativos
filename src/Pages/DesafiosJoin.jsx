@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Menu } from '../Component/Menu'
+import { Menu , Suscribe, Header, DesafioShow} from '../Component'
 import { useParams } from 'react-router-dom';
-import { Header } from '../Component/Header';
 import { getDesafiosJoinByUserId} from '../apis/DesafiosApi';
 import { desuscribeDesafio } from '../apis/UserApi.js';
-import {Suscribe} from '../Component/Suscribe.jsx';
-import { DesafioShow } from '../Component/DesafioShow.jsx';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { colorsSet } from '../assets/colors.js';
+import { getColor } from '../assets/colors.js';
+import { AlertStatus } from '../Component/AlertStatus.jsx';
 export const DesafiosJoin = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
   const { user_id } = useParams();
   const [listDesafiosJoin, setListDesafiosJoin] = useState([])
   useEffect(() => {
@@ -48,12 +45,12 @@ export const DesafiosJoin = () => {
     }
     setOpen1(false);
   };
-  const randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  
   return (
     <div className='ctn-home-page'>
 
       <div className='ctn-header'>
-        <Header user={user} />
+        <Header />
       </div>
       <div className='ctn-dashboard'>
         <div className='ctn-navegacion' id='menuIcon'>
@@ -67,9 +64,9 @@ export const DesafiosJoin = () => {
           </div>
           <div className='ctn-user-body'>
             <div className='ctn-user-container-grid'>
-              <Suscribe/>
+              <Suscribe update={()=>getDesafios()}/>
             {listDesafiosJoin.length > 0
-            ?listDesafiosJoin.map((desa, index) => <DesafioShow key={index} desafio={desa} abandonar={() => abandonar(desa.id)} color={colorsSet[randomNumberInRange(0,25)]} />)
+            ?listDesafiosJoin.map((desa, index) => <DesafioShow key={index} desafio={desa} abandonar={() => abandonar(desa.id)} color={getColor()} />)
             :<div>No hay Desafios</div>
             }
             </div>
@@ -92,6 +89,7 @@ export const DesafiosJoin = () => {
           {estadoPeticion ? "El desafio se ha borrado correctamente" : "Lo sentimos mucho, ocurrio un error"}
         </Alert>
       </Snackbar>
+      <AlertStatus open={false} status='success' message={"mensaje"}/>
     </div>
   )
 }

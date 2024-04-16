@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Header } from '../Component/Header';
-import { getCards } from '../apis/DesafiosApi';
-import { CardRepaso } from '../Component/CardRepaso';
+import { Header, CardRepaso } from '../Component/';
 import { postRepaso } from '../apis/RepasoApi';
 import Modal from '../Component/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import '../assets/RepasoDesafio.css';
-import { colorsSet } from '../assets/colors';
-import imagen from '../Images/5143494.jpg'
+import { getColor } from '../assets/colors';
+import { useFetchRepDesa } from '../Hooks/useFetchRepDesa';
+
 export const RepasoDesafio = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
   const { user_id, desafio_id, desa_id } = useParams();
-  const [cards, setCards] = useState([]);
+  const { cards , isLoading} = useFetchRepDesa(desa_id);
   const [cardActual, setCardActual] = useState(0);
   const [repaso, setRepaso] = useState({
     cardsCorrect: 0,
@@ -24,18 +22,8 @@ export const RepasoDesafio = () => {
     }
   })
 
-  useEffect(() => {
-    getCardFromDesafio();
-
-    console.log("entra")
-    console.log(cards)
-  }, [])
-  const getCardFromDesafio = async () => {
-    const data = await getCards(desa_id);
-    console.log("data:", data);
-    setCards(data);
-
-  }
+  
+ 
   const enviarRespuesta = (cantidad) => {
     console.log(cantidad);
     if (cantidad == 1) {
@@ -80,12 +68,13 @@ export const RepasoDesafio = () => {
   const abandonarRepaso = () => {
     navigate(-1);
   }
-  const randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-  console.log(repaso)
+  
+  console.log(isLoading)
+  console.log(cards.length, cardActual)
   return (
     <div className='ctn-home-pag'>
       <div className='ctn-header'>
-        <Header user={user} />
+        <Header />
       </div>
       <div className='ctn-repaso'>
         <div className='ctn-repaso-close'>
@@ -97,36 +86,31 @@ export const RepasoDesafio = () => {
           </div>
           <Modal  action={abandonarRepaso} icon={<CloseIcon />} />
         </div>
-
-
         <div className='resumen-repaso-body'>
-          {cards.length > 0 && cardActual < cards.length ?
-           <CardRepaso color={colorsSet[randomNumberInRange(0, 25)]} cardProp={cards[cardActual]} enviarRespuesta={enviarRespuesta} /> 
-          : <div className='repaso-end'>
+
+          {
+            cards.length > 0 && cardActual < cards.length?  <CardRepaso color={getColor()} cardProp={cards[cardActual]} enviarRespuesta={enviarRespuesta} /> 
+            : <div>{isLoading && 'Cargando'}</div>
+          }
+          
+         
+            
+          {
+            cardActual === cards.length && <div className='repaso-end'>
             <div className='repaso-end-ctn'>
             <div> Su repaso ha finalizado!</div>
             
             <button className='btn' onClick={enviarRepaso}>Volver</button>
-           {/* {cardActual === cards.length &&  } */}
-            </div>
-         
-         
+          
+            </div>   
           </div>
           }
 
-            
-
         </div>
-
         <div className='btn display' id='btn-next' onClick={onClickNext}>
           Next
         </div>
-
       </div>
-
-
-
-
     </div>
   )
 }

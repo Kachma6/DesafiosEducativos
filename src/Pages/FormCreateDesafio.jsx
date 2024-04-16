@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { Menu } from '../Component/Menu'
-import { Header } from '../Component/Header';
 import TextField from '@mui/material/TextField';
-import { CardShow } from '../Component/CardShow';
-import { createDesafio } from '../apis/DesafiosApi';
 import dayjs from 'dayjs';
 import { v4 } from 'uuid';
 import Avatar from '@mui/material/Avatar';
@@ -13,9 +9,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import MenuItem from '@mui/material/MenuItem';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import '../assets/FormCreateDesafio.css'
 import { Today } from '@mui/icons-material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddIcon from '@mui/icons-material/Add';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -27,6 +22,11 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { createDesafio } from '../apis/DesafiosApi';
+import '../assets/FormCreateDesafio.css'
+import { Menu, Header, CardShow } from '../Component'
+
+
 const valuesOfReps = [
   {
     value: 2
@@ -66,7 +66,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 export const FormCreateDesafio = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+
   const { user_id } = useParams();
   const [response, setResponse] = useState([])
   const [desafio, setDesafio] = useState({
@@ -85,10 +85,10 @@ export const FormCreateDesafio = () => {
     cards: false,
   });
   const [estadoPeticion, setEstadoPeticion] = useState(true)
-  const [open1, setOpen1] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [openShareCode, setOpenShareCode] = useState(false);
   const [copyStatus, setCopyStatus] = useState(false);
-  
+
   const handleClose = () => {
     setOpenShareCode(false);
   };
@@ -141,11 +141,11 @@ export const FormCreateDesafio = () => {
       const responseDb = await createDesafio(desafio);
       if (responseDb.status === 403 || responseDb.code == 'ERR_NETWORK' || responseDb.code === 'ERR_BAD_REQUEST') {
         setEstadoPeticion(false);
-        setOpen1(true)
+        setShowAlert(true)
       } else {
         if (responseDb.status === 200) {
           setEstadoPeticion(true);
-          setOpen1(true)
+          setShowAlert(true)
           setResponse(responseDb.data)
           setDesafio({
             nameDesa: '',
@@ -163,7 +163,7 @@ export const FormCreateDesafio = () => {
     } else {
       console.log("No se guardo nada")
       setEstadoPeticion(false);
-      setOpen1(true)
+      setShowAlert(true)
     }
   }
   const validarCards = () => {
@@ -193,18 +193,18 @@ export const FormCreateDesafio = () => {
     setDesafioValidation(arrayErrores)
     return contador;
   }
-  const handleClose1 = (event, reason) => {
+  const handleCloseAlert = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen1(false);
+    setShowAlert(false);
   };
   console.log(desafio)
   return (
     <div className='ctn-home-page' >
 
       <div className='ctn-header'>
-        <Header user={user} />
+        <Header />
       </div>
       <div className='ctn-dashboard'>
         <div className='ctn-navegacion' id='menuIcon'>
@@ -213,7 +213,7 @@ export const FormCreateDesafio = () => {
         </div>
         <div className='ctn-user'>
           <div className='ctn-user-title'>
-            <h2 className='ctn-user-title-h1'>Crea un nuevo Desafio para compartir!</h2>
+            <div className='ctn-user-title-h1'>Crea un nuevo Desafio para compartir!</div>
             <div className='ctn-user-title-options'>
               {desafio.cards.length === 0 ?
                 <div></div> :
@@ -255,26 +255,16 @@ export const FormCreateDesafio = () => {
                   Comparte el codigo, para que personas se puedan unir al desafio!....
                 </Typography>
                 <div className='code'>
-                  {/* {
-              response.code ?
-                <div>{response.code}</div> :
-                <div></div>
-            }
-            
-          <button onClick={handleCopied}>
-            Save changes
-          </button> */}
                   <TextField
                     value={response.code && response.code}
                     fullWidth
                     margin='none'
                     size='small'
-                    
                   />
                   <CopyToClipboard text={response.code && response.code} onCopy={onCopyText}>
-                    <Avatar  variant="square"><ContentCopyIcon /></Avatar>
+                    <Avatar variant="square"><ContentCopyIcon /></Avatar>
                   </CopyToClipboard>
-                  
+
                 </div>
                 {copyStatus && <p>El codigo se ha copiado!</p>}
               </DialogContent>
@@ -371,7 +361,7 @@ export const FormCreateDesafio = () => {
                 }
 
                 <div className='form-create-desafio-btn'>
-                  <button className='btn icon' onClick={enviarCard}><AddCircleIcon /><span>Nueva Tarjeta</span></button>
+                  <button className='btn icon' onClick={enviarCard}><AddIcon /><span>Nueva Tarjeta</span></button>
 
                 </div>
               </div>
@@ -387,9 +377,9 @@ export const FormCreateDesafio = () => {
 
 
 
-      <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <Snackbar open={showAlert} autoHideDuration={6000} onClose={handleCloseAlert} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
         <Alert
-          onClose={handleClose1}
+          onClose={handleCloseAlert}
           severity={estadoPeticion ? "success" : "error"}
           variant='filled'
           sx={{ width: '100%' }}

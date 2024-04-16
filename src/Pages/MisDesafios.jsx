@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Menu, Header,DesafioCreated, Suscribe} from '../Component'
-
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteCreateDesafio } from '../apis/DesafiosApi';
 import Snackbar from '@mui/material/Snackbar';
@@ -8,27 +7,27 @@ import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import CircularProgress from '@mui/material/CircularProgress';
-import { colorsSet } from '../assets/colors.js';
+import { getColor } from '../assets/colors.js';
 import { useFetchDesafios } from '../Hooks/useFetchDesafios.js';
 export const MisDesafios = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const { user_id } = useParams();
   const navigate = useNavigate();
-  const { listDesafiosCreated, isLoading} = useFetchDesafios(user_id);
+  const { listDesafiosCreated, isLoading , update } = useFetchDesafios(user_id);
   const [estadoPeticion, setEstadoPeticion] = useState(true)
-  const [open1, setOpen1] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const eliminar = async (id) => {
     const response = await deleteCreateDesafio(id);
     console.log("eliminandoooooooooooo", id)
     if(response.status === 200){
       setEstadoPeticion(true);
-      setOpen1(true)
-      useFetchDesafios(user_id);
+      setShowAlert(true)
+      update();
     }else{
       if(response.status === 403 || response.code ==='ERR_NETWORK'){
         setEstadoPeticion(false);
-        setOpen1(true)
+        setShowAlert(true)
       }
     }
    
@@ -41,9 +40,9 @@ export const MisDesafios = () => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen1(false);
+    setShowAlert(false);
   };
-  const randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
  
   return (
     <div className='ctn-home-page'>
@@ -78,7 +77,7 @@ export const MisDesafios = () => {
             }
             
               {
-                listDesafiosCreated.length&&listDesafiosCreated.map((desa) => <DesafioCreated key={desa.id} desafio={desa} color={colorsSet[randomNumberInRange(0,25)]} eliminar={() => eliminar(desa.id)} />)
+                listDesafiosCreated.length&&listDesafiosCreated.map((desa) => <DesafioCreated key={desa.id} desafio={desa} color={getColor()} eliminar={() => eliminar(desa.id)} />)
               }
            
             </div>
@@ -91,7 +90,7 @@ export const MisDesafios = () => {
         </div>
       </div>
  
-      <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <Snackbar open={showAlert} autoHideDuration={6000} onClose={handleClose1} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
         <Alert
           onClose={handleClose1}
           severity={estadoPeticion ? "success" : "error"}

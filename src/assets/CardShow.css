@@ -10,8 +10,8 @@
 .card-show-header{
     margin: 16px 16px 30px 16px ;
     padding-bottom: 30px;
-    border-bottom: 1px solid rgb(229, 229, 229);
-    /* background-color: rgb(225, 225, 225); */
+    border-bottom: 1px solid rgb(216, 216, 216);
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,8 +22,10 @@
     grid-template-columns: 1fr 1fr ;
     gap: 10px;
     justify-content: center;
+    
  
 }
+
 .ctn-card-btns{
     display: flex;
     justify-content: center;

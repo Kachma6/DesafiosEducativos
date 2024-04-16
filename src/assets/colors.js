@@ -27,3 +27,8 @@ export const  colorsSet = [
     {letter: '#263238', back:'#ECEFF1'},
   
   ]
+
+export const getColor = () => {
+   return colorsSet[randomNumberInRange(0,25)]
+}
+const randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;

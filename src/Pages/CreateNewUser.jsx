@@ -4,6 +4,7 @@ import { createNewUser } from '../apis/UserApi';
 import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import '../assets/CreateNewUser.css';
+import logo from '../Images/logo.png'
 const valuesOfReps = [
     {
       value: "Mujer"
@@ -69,7 +70,7 @@ export const CreateNewUser = () => {
         if (valido() && validoTodo()) {
             const response = await createNewUser(newUser)
             console.log(response);
-            if (response.code === 'ERR_BAD_REQUEST') {
+            if (response.code === 'ERR_BAD_REQUEST' || response.code === 'ERR_NETWORK') {
                 console.log("Algo salio mal")
             } else {
                 if (response.id !== null) {
@@ -114,8 +115,19 @@ export const CreateNewUser = () => {
     }
     console.log(newUser)
     return (
-        <div className='ctn-form-register ctn-display'>
-
+        <div className='ctn-form-register'>
+            <div className='logo-register'>
+               
+            <div className='ctn-icon-login'>
+          <div className='icon uno'>M</div>
+          <div className='icon dos'>e</div>
+          <div className='icon tres'>m</div>
+          <div className='icon cuatro'>o</div>
+        </div>
+                
+               
+            </div>
+            
             <div className='ctn-form'>
                 <div className='ctn-form-text'>
                     <div>Regístrate ahora</div>
@@ -127,7 +139,7 @@ export const CreateNewUser = () => {
                     label="Nombre"
                     variant="standard"
                     name="firstName"
-                    margin='dense'
+                    margin='normal'
                     value={newUser.firstName}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -140,7 +152,7 @@ export const CreateNewUser = () => {
                     label="Apellidos"
                     variant="standard"
                     name="lastName"
-                    margin="dense"
+                    margin="normal"
                     value={newUser.lastName}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -153,7 +165,7 @@ export const CreateNewUser = () => {
                     label="Nombre de usuario"
                     variant="standard"
                     name="username"
-                    margin="dense"
+                    margin="normal"
                     value={newUser.username}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -167,7 +179,7 @@ export const CreateNewUser = () => {
                     variant="standard"
                     name='email'
                     type='email'
-                    margin="dense"
+                    margin="normal"
                     value={newUser.email}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -178,7 +190,7 @@ export const CreateNewUser = () => {
                 <TextField
                     className='input'
                     label="Contraseña"
-                    margin="dense"
+                    margin="normal"
                     variant="standard"
                     type='password'
                     name='password'
@@ -196,6 +208,7 @@ export const CreateNewUser = () => {
                   name='gender'
                   label="Genero"
                   margin="normal"
+                  variant='standard'
                   value={newUser.gender}
                   onChange={handleChanges}
                 >
@@ -214,6 +227,8 @@ export const CreateNewUser = () => {
                 
 
             </div>
+          
+         
 
 
         </div>

@@ -18,15 +18,7 @@
 .card-repaso.ocultar, .card-repaso-detras.ocultar{
     display: none;
 }
-/* .card-header{
-   
-    width: 100%;
-    height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px 10px 0 0;
-} */
+
 .card-body{
     height: 100%;
     display: flex;

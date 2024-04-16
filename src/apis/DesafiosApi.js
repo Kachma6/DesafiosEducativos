@@ -39,18 +39,7 @@ export const getDesafioCreatedById = async (id) => {
         return error;
     }
 }
-export const getCards = async (desafioId) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
-    const headers = `Bearer ${datos.token}`;
-    try{
-        const response = await instance.get(`/cards/${desafioId}`,{
-            headers: { Authorization: headers}
-        });
-        return response.data;
-    }catch(error){
-        return error;
-    }
-}
+
 export const getDesafioComplete = async (desafioId) => {
     const datos = JSON.parse(localStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;

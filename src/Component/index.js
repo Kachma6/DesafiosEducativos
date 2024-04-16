@@ -5,3 +5,5 @@ export * from './DesafioCreated';
 export * from './DesafioShow';
 export * from './Menu';
 export * from './Header';
+export * from './CardShow';
+export * from './AlertStatus'

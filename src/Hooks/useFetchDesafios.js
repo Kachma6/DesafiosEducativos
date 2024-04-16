@@ -13,6 +13,7 @@ export const useFetchDesafios = (user_id) => {
     },[])
   return {
      listDesafiosCreated: desafios,
-     isLoading
+     isLoading,
+     update: getDesafios
     }
 }

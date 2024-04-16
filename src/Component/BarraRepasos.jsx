@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import '../assets/BarraRepasos.css'
 export const BarraRepasos = ({ repasos , repasosTotal, color}) => {
-    // const [days, setDays] = useState(Array[repasosTotal])
-    // useEffect(()=>{
-    //     renderizar()
-    // },[])
+   
     const renderizar = () => {
         const day = [];
         for(let i = 0; i < repasosTotal; i++){
