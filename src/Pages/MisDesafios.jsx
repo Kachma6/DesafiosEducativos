@@ -10,7 +10,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { getColor } from '../assets/colors.js';
 import { useFetchDesafios } from '../Hooks/useFetchDesafios.js';
 export const MisDesafios = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
   const { user_id } = useParams();
   const navigate = useNavigate();
   const { listDesafiosCreated, isLoading , update } = useFetchDesafios(user_id);
@@ -48,7 +47,7 @@ export const MisDesafios = () => {
     <div className='ctn-home-page'>
 
       <div className='ctn-header'>
-        <Header user={user}/>
+        <Header/>
       </div>
       <div className='ctn-dashboard'>
         <div className='ctn-navegacion' id='menuIcon'>

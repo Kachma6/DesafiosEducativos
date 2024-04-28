@@ -39,7 +39,7 @@ export default function AlertDialog({action, icon}) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-              Esta seguro de abandonar el repaso en curso
+              Esta seguro de abandonar el repaso que esta realizando!
           </DialogContentText>
         </DialogContent>
         <DialogActions>

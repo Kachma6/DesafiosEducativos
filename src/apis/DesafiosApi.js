@@ -17,13 +17,11 @@ export const getDesafiosCreated = async (userId) => {
     const headers = `Bearer ${datos.token}`;
 
     try{
-        const response = await instance.get(`/created-desa/by-user-created/${userId}`,{
+        const response = await instance.get(`/created-desa/user/${userId}`,{
             headers: { Authorization: headers}
         });
-        console.log("dataaaaaaaaa",response);
         return response.data;
     }catch(error){
-        console.log(error)
         return error;
     }
 }
@@ -31,7 +29,7 @@ export const getDesafioCreatedById = async (id) => {
     const datos = JSON.parse(localStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
-        const response = await instance.get(`/created-desa/by-id/${id}`,{
+        const response = await instance.get(`/created-desa/${id}`,{
             headers: { Authorization: headers}
         });
         return response.data;
@@ -44,7 +42,7 @@ export const getDesafioComplete = async (desafioId) => {
     const datos = JSON.parse(localStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
-        const response = await instance.get(`/created-desa/by-id/${desafioId}/complete`,{
+        const response = await instance.get(`/created-desa/${desafioId}/complete`,{
             headers: { Authorization: headers}
         });
         return response.data;
@@ -55,17 +53,13 @@ export const getDesafioComplete = async (desafioId) => {
 export const createDesafio = async (desafio) => {
     const datos = JSON.parse(localStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
-    console.log("headers", headers)
     try{
         const response = await instance.post(`/created-desa`, desafio, {
             headers: { Authorization: headers}
         });
-        console.log("res apiiiiiiiiiiiiii",response)
         return response;
     }catch(error){
-        console.log("error",error)
-        return error;
-        
+        return error;    
     }
 }
 export const editCreateDesafio = async (registerForm, id) => {

@@ -61,11 +61,11 @@
         height: 10%;
         justify-content: center;
        
+        font-size: 0.5em;
+       
          
      }
-     .logo-register img{
-         width: 50%;
-     }
+     
     .ctn-form{
         display: flex;
         flex-direction: column;

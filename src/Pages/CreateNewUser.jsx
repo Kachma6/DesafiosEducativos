@@ -3,8 +3,10 @@ import TextField from '@mui/material/TextField';
 import { createNewUser } from '../apis/UserApi';
 import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
+import CircularProgress from '@mui/material/CircularProgress';
 import '../assets/CreateNewUser.css';
-import logo from '../Images/logo.png'
+import { AlertStatus } from '../Component';
+
 const valuesOfReps = [
     {
       value: "Mujer"
@@ -33,6 +35,8 @@ export const CreateNewUser = () => {
         email: false,
         password: false
     })
+    const [ alert , setAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleChanges = (e) => {
@@ -68,10 +72,15 @@ export const CreateNewUser = () => {
     }
     const handleSubmit = async () => {
         if (valido() && validoTodo()) {
+            setLoading(true)
             const response = await createNewUser(newUser)
+            setLoading(false)
             console.log(response);
             if (response.code === 'ERR_BAD_REQUEST' || response.code === 'ERR_NETWORK') {
-                console.log("Algo salio mal")
+                setAlert(false )
+                console.log("algo salio mal", alert)
+                
+                setAlert(true)
             } else {
                 if (response.id !== null) {
                     localStorage.setItem('user', JSON.stringify(response));
@@ -85,7 +94,7 @@ export const CreateNewUser = () => {
             console.log("no envio")
         }
 
-
+        
     }
     const valido = () => {
 
@@ -223,14 +232,19 @@ export const CreateNewUser = () => {
                 <div className='ctn-display'>
                 <button className='btn' onClick={handleCancelar}>Cancelar</button>
                 <button className='btn' onClick={handleSubmit}>Crear</button>
+                {/* {
+                    loading&&<CircularProgress color="inherit" />
+                } */}
                 </div>
+                
+                
                 
 
             </div>
           
          
 
-
+            <AlertStatus open={alert} message={'No se ha registrado el usuario'} status={'error'}/>
         </div>
     )
 }

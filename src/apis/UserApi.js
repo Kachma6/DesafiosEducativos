@@ -48,7 +48,7 @@ export const desuscribeDesafio = async (id) =>{
     const datos = JSON.parse(localStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
-        const response = await instance.delete(`/inscribirse/desescribirse/${id}`,{
+        const response = await instance.delete(`/inscribirse/${id}`,{
             headers: { Authorization: headers}
         })
         return response
