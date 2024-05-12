@@ -69,7 +69,7 @@ export const editCreateDesafio = async (registerForm, id) => {
         const response = await instance.put(`/created-desa/${id}`, registerForm,{
             headers: { Authorization: headers}
         });
-        return response.data;
+        return response;
     }catch(error){
         return error;
     }

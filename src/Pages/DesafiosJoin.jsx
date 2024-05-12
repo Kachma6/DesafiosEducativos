@@ -7,6 +7,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { getColor } from '../assets/colors.js';
 import { AlertStatus } from '../Component/AlertStatus.jsx';
+import dayjs from 'dayjs';
 export const DesafiosJoin = () => {
   const { user_id } = useParams();
   const [listDesafiosJoin, setListDesafiosJoin] = useState([])
@@ -24,8 +25,7 @@ export const DesafiosJoin = () => {
   }
   const abandonar = async (id) => {
     const response = await desuscribeDesafio(id);
-    console.log("eliminandoooooooooooo", id)
-    console.log(response)
+
     if(response.status === 200){
       setEstadoPeticion(true);
       setOpen1(true)
@@ -45,6 +45,18 @@ export const DesafiosJoin = () => {
     }
     setOpen1(false);
   };
+  const isTodayTheLastRep = (listReps) => {
+
+    for(let i = 0; i< listReps.length;i++){
+
+      console.log(listReps[i].dateRep[0] ===dayjs().year() &&  listReps[i].dateRep[1] === dayjs().month() && listReps[i].dateRep[2] === dayjs().date())
+      if( listReps[i].dateRep[0] ===dayjs().year() &&  listReps[i].dateRep[1] === dayjs().month()+1 && listReps[i].dateRep[2] === dayjs().date() ){
+        console.log("hola")
+        return false;
+      }
+    }
+    return true;
+  }
   
   return (
     <div className='ctn-home-page'>
@@ -66,7 +78,7 @@ export const DesafiosJoin = () => {
             <div className='ctn-user-container-grid'>
               <Suscribe update={()=>getDesafios()}/>
             {listDesafiosJoin.length > 0
-            ?listDesafiosJoin.map((desa, index) => <DesafioShow key={index} desafio={desa} abandonar={() => abandonar(desa.id)} color={getColor()} />)
+            ?listDesafiosJoin.map((desa, index) => <DesafioShow key={index} desafio={desa} abandonar={() => abandonar(desa.id)} color={getColor()}  isAvailable = { isTodayTheLastRep(desa.repsDesa)}/>)
             :<div>No hay Desafios</div>
             }
             </div>

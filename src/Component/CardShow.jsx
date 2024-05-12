@@ -55,7 +55,7 @@ export const CardShow = ({ cardData, index, editar, eliminar }) => {
         console.log("is validation",isValidation)
        
     }
-    console.log("get color",getColor());
+    
     return ( 
         <div className='card-show' >
             <div className='card-show-header'>

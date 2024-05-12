@@ -37,70 +37,102 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
     }
 
   }
+  const calculateStateDays = () => {
+    let date = dayjs(desafio.finishedDate.slice(0, 10))
+    let today = dayjs();
 
+    return Math.ceil((date - today) / (1000 * 3600 * 24));
 
+  }
+  console.log(desafio)
   return (
-    <div className='ctn-desafio' style={{ background: color.back }}>
-         <div className='ctn-desafio-info-head'>
-          <div className='ctn-state'>{calculateState()}</div>
-          <div
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
-          >
-            <MoreVertIcon />
+    <div className='cctn-desafio' style={{ background: color.back }}>
+      <div className='cctn-desafio-info-head'>
+        <div className='cctn-state'>{calculateState()}</div>
+        <div
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        >
+          <MoreVertIcon />
+        </div>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+
+          <ShareCode code={desafio.code} />
+
+          <MenuItem onClick={editar} className='menu-item'>
+            <EditIcon /> <span>Editar</span>
+          </MenuItem>
+
+          <DeleteDesafioConfirm eliminar={() => eliminar(desafio.id)} idDesafio={desafio.id} type={1} />
+
+
+
+        </Menu>
+
+      </div>
+      <div className='cctn-desafio-info' style={{ background: color.back }}>
+
+        <div className='cctn-desafio-info-header'>
+          <div className='cctn-desafio-info-title' style={{ color: color.letter }}> {desafio.nameDesa}</div>
+          {/* <span className='info'>{desafio.description}</span> */}
+
+        </div>
+        <div className='cctn-desafio-info-body'>
+
+          <div>
+
+            <div className='info'><span>Inicio : </span>
+              {dayjs(`${desafio.created[0]}-${desafio.created[1]}-${desafio.created[2]}`).locale("es").format('DD MMMM [de] YYYY')}</div>
+            <div className='info'><span>Finaliza : </span> {dayjs(desafio.finishedDate.slice(0, 10)).locale("es").format('DD MMMM [de] YYYY')}</div>
           </div>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-               
-            <ShareCode code={desafio.code}/>
-            
-            <MenuItem onClick={editar} className='menu-item'>
-              <EditIcon /> <span>Editar</span>
-            </MenuItem>
-
-            <DeleteDesafioConfirm eliminar={() => eliminar(desafio.id)} idDesafio={desafio.id} type={1} />
-
-
-
-          </Menu>
-
-        </div>
-      <div className='ctn-desafio-info' style={{ background: color.back }}>
-     
-        <div className='ctn-desafio-info-header'>
-          <div className='ctn-desafio-info-title' style={{ color: color.letter }}> {desafio.nameDesa}</div>
-          
-
-        </div>
-        <div className='ctn-desafio-info-body'>
-        <span className='info'>{desafio.description}</span>
-          <div className='info'><span>Inicio :</span>
-            {dayjs(`${desafio.created[0]}-${desafio.created[1]}-${desafio.created[2]}`).locale("es").format('DD MMMM [de] YYYY')}</div>
-          <div className='info'><span>Finaliza :</span> {dayjs(desafio.finishedDate.slice(0, 10)).locale("es").format('DD MMMM [de] YYYY')}</div>
 
         </div>
 
       </div>
-      <div className='ctn-desafio-btns'>
+      <div className='cctn-desafio-btns'>
 
 
 
-        <div className='ctn-desafio-numbers'>
-          <div className='ctn-state'><PersonOutlineIcon /><span>{desafio.numMembers}</span></div>
-          <div className='ctn-state'><StyleIcon /><span>{desafio.numCards}</span></div>
+        {/* <div className='cctn-desafio-numbers'>
+
+          <div className='cctn-state state'><span>{desafio.numMembers}</span></div>
+          <div className='cctn-state state'><span>{desafio.numCards}</span></div>
+
+        </div> */}
+
+        <div className='cctn-letrero' >
+          <div className='cletrero' >
+            <div className='cletrero-let'><PersonOutlineIcon style={{ color: color.letter }} /></div>
+
+            <div className='cletrero-num' style={{ color: color.letter }}>{desafio.numMembers}</div>
+          </div>
+          <div className='cletrero' >
+            <div className='cletrero-let'><StyleIcon style={{ color: color.letter }} /></div>
+
+            <div className='cletrero-num' style={{ color: color.letter }}>{desafio.numCards}</div>
+          </div>
+          <div className='cletrero' >
+            <div className='letrero-let' style={{ color: color.letter }}>Dias Faltantes</div>
+
+            <div className='cletrero-num' style={{ color: color.letter }}>{calculateStateDays()}</div>
+          </div>
+          <div className='cletrero' >
+            <div className='letrero-let' style={{ color: color.letter }}>Total Repasos</div>
+
+            <div className='cletrero-num' style={{ color: color.letter }}>{desafio.numRep}</div>
+          </div>
         </div>
-        
-
 
       </div>
 

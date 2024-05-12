@@ -1,14 +1,187 @@
-.ctn-desafio{
-  
-  
-}
-.btn-options{
- margin: 6px;
-}
-.btn-options:hover{
-    color: black;
-    background-color: white;
-}
-.ctn-btn-options{
+.cctn-desafio {
+    box-sizing: border-box;
+    border-radius: 16px;
+    height: 300px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.cctn-desafio-info-head {
+    box-sizing: border-box;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    
+}
+
+.cctn-desafio-info {
+    height: 40%;
+    padding: 24px;
+    box-sizing: border-box;
+    display: inherit;
+    flex-direction: column;
+    justify-content: space-between;
+    text-transform: capitalize;
+    font-style: italic;
+    font-size: 0.8em;
+
+}
+
+.cctn-desafio-btns {
+    height: 40%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    
+    /* padding: 24px; */
+   
+
+  
+}
+
+.cctn-desafio-info-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+
+}
+
+.ctn-desafio-info-header {}
+
+.cctn-desafio-info-body {
+    line-height: 1.5em;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  
+    justify-content: space-between;
+}
+
+
+.cctn-desafio-info span {
+    font-style: italic;
+    color: gray;
+    font-size: 0.8em;
+    text-transform: capitalize;
+}
+.cctn-desafio-info .info{
+    padding: 3px 0px;
+}
+
+.cctn-state {
+    background-color: rgb(255, 254, 254);
+    padding: 4px 10px;
+    text-align: center;
+    border-radius: 16px;
+    color: rgb(164, 164, 164);
+    font-style: italic;
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+}
+
+.cctn-state span {
+    padding: 0 6px;
+}
+
+.cctn-desafio-numbers {
+    /* margin: 2px;
+    align-items: center; */
+    
+    
+}
+
+.cctn-desafio-numbers .cctn-state {
+   
+    
+}
+.state{
+    margin: 6px 0px;
+}
+.menu-item span{
+    margin-left: 10px;
+}
+.cctn-letrero{
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+    max-height: 70px;
+   
+}
+.cletrero{
+    /* margin-right: 10px; */
+    border-radius: 12px;
+    background-color: white;
+    /* min-width: 40px; */
+    width: 50px;
+    max-width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 6px;
+}
+.cletrero-let{
+    font-size: 0.6em;
+    border-radius: 12px;
+   
+    margin: 0px;
+    padding: 0px 6px;
+
+}
+.cletrero-num{
+    font-size: 1.2em;
+    border-radius: 3px;
+    
+    padding: 5px;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+   font-weight: 600;
+}
+@media (max-width: 900px) {
+    .cctn-desafio {
+        box-sizing: border-box;
+        border-radius: 16px;
+        height: 325px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+}
+@media (max-width: 600px) {
+    .cctn-desafio-info-body {
+        line-height: 1.5em;
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .cctn-desafio-numbers {
+        /* margin: 2px;
+        align-items: center; */
+        display: flex;
+        
+    }
+    .state{
+        margin: 6px 6px;
+    }
+    .cctn-desafio-btns {
+        height: 40%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        padding: 30px;
+       
+       
+    
+      
+    }
 }

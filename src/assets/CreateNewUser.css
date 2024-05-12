@@ -44,6 +44,20 @@
     justify-content: end;
     padding-top: 20px;
 }
+.login-page-register{
+    
+    width: 70%;
+   
+    box-sizing: border-box;
+    
+    border-radius: 16px;
+    height: 90%;
+    border-radius: 16px;
+    display: flex;
+  
+    
+    flex-direction: column;
+}
 @media screen and (max-width: 900px) {
     .ctn-form-register{
    

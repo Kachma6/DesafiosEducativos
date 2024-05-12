@@ -60,7 +60,10 @@ export const CardRepaso = ({ cardProp, enviarRespuesta, color }) => {
                     value={respuesta}
                     onChange={(e) => setRespuesta(e.target.value)}
                   />
+                  <div className='btn-repaso'>
                   <button className='btn' onClick={onHandleSubmit}>Enviar</button>
+                  </div>
+                 
                 </form>
 
               </div>

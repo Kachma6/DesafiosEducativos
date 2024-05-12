@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
 import '../assets/CreateNewUser.css';
 import { AlertStatus } from '../Component';
-
+import { getColor } from '../assets/colors';
 const valuesOfReps = [
     {
       value: "Mujer"
@@ -38,7 +38,7 @@ export const CreateNewUser = () => {
     const [ alert , setAlert] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
+    const [color, setColor] = useState(getColor());
     const handleChanges = (e) => {
         const { name, value } = e.target
         setNewUser({
@@ -124,20 +124,21 @@ export const CreateNewUser = () => {
     }
     console.log(newUser)
     return (
-        <div className='ctn-form-register'>
-            <div className='logo-register'>
-               
-            <div className='ctn-icon-login'>
-          <div className='icon uno'>M</div>
-          <div className='icon dos'>e</div>
-          <div className='icon tres'>m</div>
-          <div className='icon cuatro'>o</div>
+        <div className='ctn-home-page'>
+          <div className='ctn-header'>
+        <div className='ctn-header-component'>
+          <div className='ctn-icon'>
+            <p className='icon uno'>M</p>
+            <p className='icon dos'>e</p>
+            <p className='icon tres'>m</p>
+            <p className='icon cuatro'>o</p>
+          </div>
         </div>
-                
-               
-            </div>
-            
-            <div className='ctn-form'>
+      </div>
+      <div className='ctn-login-page'>
+        <div className='ctn-login-page-form'>
+          <div className='login-page-register'  >
+          
                 <div className='ctn-form-text'>
                     <div>Regístrate ahora</div>
                     <div>Aprende mientras juegas</div>
@@ -161,7 +162,7 @@ export const CreateNewUser = () => {
                     label="Apellidos"
                     variant="standard"
                     name="lastName"
-                    margin="normal"
+                    margin='normal'
                     value={newUser.lastName}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -174,7 +175,7 @@ export const CreateNewUser = () => {
                     label="Nombre de usuario"
                     variant="standard"
                     name="username"
-                    margin="normal"
+                    margin='normal'
                     value={newUser.username}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -188,7 +189,7 @@ export const CreateNewUser = () => {
                     variant="standard"
                     name='email'
                     type='email'
-                    margin="normal"
+                    margin='normal'
                     value={newUser.email}
                     onChange={handleChanges}
                     onBlur={handleOnBlur}
@@ -199,7 +200,7 @@ export const CreateNewUser = () => {
                 <TextField
                     className='input'
                     label="Contraseña"
-                    margin="normal"
+                    margin='normal'
                     variant="standard"
                     type='password'
                     name='password'
@@ -216,7 +217,7 @@ export const CreateNewUser = () => {
                   fullWidth
                   name='gender'
                   label="Genero"
-                  margin="normal"
+                  margin='normal'
                   variant='standard'
                   value={newUser.gender}
                   onChange={handleChanges}
@@ -240,8 +241,27 @@ export const CreateNewUser = () => {
                 
                 
 
+           
+          </div>
+        </div>
+        <div className='login-page-header'>
+          <div className='login-page-header-content'>
+            <div className='ctn-icon-login'>
+              <div className='icon uno'>M</div>
+              <div className='icon dos'>e</div>
+              <div className='icon tres'>m</div>
+              <div className='icon cuatro'>o</div>
             </div>
-          
+            <div className='ctn-icon-login-text'>Diviertate y desafiate mientras aprendes con el metodo Active Recall!</div>
+          </div>
+
+          {/* <div>
+          <img src={imagen} style={{width:"80%"}}></img>
+        </div> */}
+
+        </div>
+      </div>
+           
          
 
             <AlertStatus open={alert} message={'No se ha registrado el usuario'} status={'error'}/>

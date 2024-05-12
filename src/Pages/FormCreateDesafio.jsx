@@ -224,11 +224,7 @@ export const FormCreateDesafio = () => {
 
           </div>
           <div className='ctn-user-body'>
-            {
-              response.code ?
-                <div>{response.code}</div> :
-                <div></div>
-            }
+           
 
             <BootstrapDialog
               onClose={handleClose}
@@ -302,6 +298,8 @@ export const FormCreateDesafio = () => {
                 error={desafioValidation.description}
                 helperText={desafioValidation.description ? "Es obligatorio" : ''}
               />
+              
+             
               <div className='form-create-desafio-two'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>

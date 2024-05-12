@@ -1,9 +1,9 @@
 
 .ctn-login-page {
-    height: 100%;
+    height: 90%;
     box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
    
     
@@ -11,21 +11,37 @@
 
 .login-page-header{
     box-sizing: inherit;
-    width: 45%;
-    padding: 20px;
-    
+    width: 50%;
+    padding: 0;
+    height: 100%;
+    background-image: url("../Images/login3.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .ctn-icon-login{
-    display: flex;
-    justify-content: start;
+   
+  display: flex;
 
     
     
 }
+.login-page-header-content{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    
+    align-items: start;
+    height: 80%;
+
+}
 .ctn-icon-login-text{
+    
     padding-bottom: 20px;
-    color: gray;
+    color: rgb(2, 2, 2);
     letter-spacing: 2px;
+    
 }
 .ctn-icon-login .icon{
     
@@ -35,6 +51,7 @@
     font-style: normal;
     text-shadow: -2px -2px 2px rgb(197, 194, 194);
     letter-spacing: 12px;
+
 
    
 }
@@ -51,20 +68,23 @@
   .ctn-icon-login .icon.cuatro{
     color: gold;
   }
+.ctn-login-page-form{
+    
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .login-page {
     
-    width: 40%;
-  
+    width: 70%;
+   
     box-sizing: border-box;
     padding: 30px 50px;
     border-radius: 16px;
     height: 70%;
-   
-  
     border-radius: 16px;
-    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(11.5px);
-    -webkit-backdrop-filter: blur(11.5px);  */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,7 +98,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+   
 }
 
 .login-page .input {
@@ -107,8 +127,8 @@
 @media screen and (max-width: 900px) {
     .ctn-login-page {
         box-sizing: border-box;
-        padding: 30px;
-        height: 100%;
+       
+        height: 90%;
         
         display: flex;
         justify-content: center;
@@ -122,9 +142,21 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-image: none;
+        background-position: none;
+        background-size: none;
+        background-repeat: none;
+        display: none;
         
     }
-   
+    .ctn-login-page-form{
+    
+        width: 90%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .login-page {
         
         width: 70%;
@@ -180,8 +212,8 @@
 @media screen and (max-width: 600px) {
     .ctn-login-page {
         box-sizing: border-box;
-        padding: 30px;
-        height: 100%;
+        
+        height: 90%;
         
         display: flex;
         justify-content: center;
@@ -194,6 +226,20 @@
         flex-direction: column;
         background-color: white;
         text-align: center;
+        
+    }
+    .login-page-header{
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: none;
+        background-position: none;
+        background-size: none;
+        background-repeat: none;
+        display: none;
         
     }
     .ctn-icon-login{
