@@ -79,7 +79,7 @@ export const DesafiosJoin = () => {
               <Suscribe update={()=>getDesafios()}/>
             {listDesafiosJoin.length > 0
             ?listDesafiosJoin.map((desa, index) => <DesafioShow key={index} desafio={desa} abandonar={() => abandonar(desa.id)} color={getColor()}  isAvailable = { isTodayTheLastRep(desa.repsDesa)}/>)
-            :<div>No hay Desafios</div>
+            :<div></div>
             }
             </div>
           

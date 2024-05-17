@@ -33,6 +33,10 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
 
     }
     const calculateStateString = () => {
+        console.log("finalizado " , dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isBefore(dayjs()) )
+        console.log(dayjs(desafio.desaCreated.finishedDate.slice(0, 10)))
+        console.log(dayjs().isSame(desafio.desaCreated.finishedDate.slice(0, 10), 'date'))
+        console.log("finalizado is today " , dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isSame(dayjs()) )
         if (dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isBefore(dayjs()) || !isComplete()) {
             return 'Finalizado'
         } else {

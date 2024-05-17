@@ -45,7 +45,7 @@ export const LoginPage = () => {
         const user = await autenticate(login.username.value, login.password.value);
         if (user.status === 403 || user.code === "ERR_NETWORK" || user.code === "ERR_BAD_REQUEST"
         ) {
-          setUserNotFound("Llene los campos correctamente.")
+          setUserNotFound("*Llene los campos correctamente.")
         } else {
           if (user.status === 200) {
             navigate(`${user.data.id}/desafios-join`);
@@ -131,7 +131,7 @@ export const LoginPage = () => {
               </FormControl>
 
 
-              <div>{showUserNotFound}</div>
+              <div className='login-error'>{showUserNotFound}</div>
               <div className='ctn-btns'>
                 <button style={{ background: color.letter }} className='btn' type='submit' onClick={handleSubmit}>Iniciar Sesión</button>
 

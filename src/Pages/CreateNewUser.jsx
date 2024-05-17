@@ -45,6 +45,7 @@ export const CreateNewUser = () => {
             ...newUser, [name]: value
         })
         changeIsValid(name, value)
+        setAlert(false)
     }
     const handleOnBlur = (e) => {
         const { name, value } = e.target

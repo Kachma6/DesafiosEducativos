@@ -25,8 +25,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { createDesafio } from '../apis/DesafiosApi';
 import '../assets/FormCreateDesafio.css'
 import { Menu, Header, CardShow } from '../Component'
-
-
+import { getColor } from '../assets/colors';
+import InfoIcon from '@mui/icons-material/Info';
 const valuesOfReps = [
   {
     value: 2
@@ -213,11 +213,11 @@ export const FormCreateDesafio = () => {
         </div>
         <div className='ctn-user'>
           <div className='ctn-user-title'>
-            <div className='ctn-user-title-h1'>Crea un nuevo Desafio para compartir!</div>
+            <div className='ctn-user-title-h1' >Crea un nuevo Desafío para compartir!</div>
             <div className='ctn-user-title-options'>
               {desafio.cards.length === 0 ?
                 <div></div> :
-                <button className='btn' onClick={guardarDesafio}>Guardar Desafio</button>
+                <button className='btn' onClick={guardarDesafio}>Guardar Desafío</button>
               }
 
             </div>
@@ -232,7 +232,7 @@ export const FormCreateDesafio = () => {
               open={openShareCode}
             >
               <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                Comparte el Desafio!
+                Comparte el Desafío!
               </DialogTitle>
               <IconButton
                 aria-label="close"
@@ -248,7 +248,7 @@ export const FormCreateDesafio = () => {
               </IconButton>
               <DialogContent dividers>
                 <Typography gutterBottom>
-                  Comparte el codigo, para que personas se puedan unir al desafio!....
+                  Comparte el código, para que personas se puedan unir al desafío!....
                 </Typography>
                 <div className='code'>
                   <TextField
@@ -262,7 +262,7 @@ export const FormCreateDesafio = () => {
                   </CopyToClipboard>
 
                 </div>
-                {copyStatus && <p>El codigo se ha copiado!</p>}
+                {copyStatus && <p>El código se ha copiado!</p>}
               </DialogContent>
             </BootstrapDialog>
             <div className='form-create-desafio'>
@@ -272,7 +272,7 @@ export const FormCreateDesafio = () => {
                 margin="normal"
                 id="nameDesa"
                 name="nameDesa"
-                label="Nombre del Desafio"
+                label="Nombre del Desafío"
                 type="text"
                 fullWidth
                 inputProps={{ maxLength: 200 }}
@@ -287,7 +287,7 @@ export const FormCreateDesafio = () => {
                 margin="normal"
                 id="description"
                 name="description"
-                label="Descripcion"
+                label="Instrucción"
                 type="text"
                 fullWidth
                 inputProps={{ maxLength: 200 }}
@@ -299,12 +299,12 @@ export const FormCreateDesafio = () => {
                 helperText={desafioValidation.description ? "Es obligatorio" : ''}
               />
               
-             
+             <div className='info-form'><InfoIcon/><span>Considere que sólo se puede realizar un repaso por día</span></div>
               <div className='form-create-desafio-two'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>
                     <DatePicker
-                      label="Fecha de finalizacion :"
+                      label="Fecha de finalización :"
                       value={desafio.finishedDate}
                       onChange={onChangeFinishedDate}
                       defaultValue={Today}
@@ -323,7 +323,7 @@ export const FormCreateDesafio = () => {
                   select
                   fullWidth
                   name='numRep'
-                  label="Numero de Repeticiones"
+                  label="Número de Repeticiones"
                   margin="normal"
                   value={desafio.numRep}
                   onChange={onChangeData}
@@ -337,13 +337,13 @@ export const FormCreateDesafio = () => {
               </div>
 
               <div className='form-create-desafio-separador'></div>
-              <h2 className=' ctn-user-title-h1'>
-                Crea tarjetas de estudio para tu desafio!
+              <h2 className=' ctn-user-title-h1' >
+                Crea tarjetas de estudio para tu desafío!
               </h2>
               <div>
 
                 {
-                  desafioValidation.cards && <div className='message-error'> * Por favor llena todos los campos de las tarjetas</div>
+                  desafioValidation.cards && <div className='message-error'> * Por favor llene todos los campos de las tarjetas</div>
                 }
                 {
                   desafio.cards.map((c, index) => (

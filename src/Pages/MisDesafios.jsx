@@ -76,7 +76,7 @@ export const MisDesafios = () => {
             }
             
               {
-                listDesafiosCreated.length&&listDesafiosCreated.map((desa) => <DesafioCreated key={desa.id} desafio={desa} color={getColor()} eliminar={() => eliminar(desa.id)} />)
+                listDesafiosCreated.length? listDesafiosCreated.map((desa) => <DesafioCreated key={desa.id} desafio={desa} color={getColor()} eliminar={() => eliminar(desa.id)} />) : <div></div>
               }
            
             </div>

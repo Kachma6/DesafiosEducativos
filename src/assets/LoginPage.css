@@ -100,7 +100,12 @@
     align-items: center;
    
 }
-
+.login-error{
+   font-style: italic;
+   color: red;
+   font-size: 0.7em;
+   letter-spacing: 2px;
+}
 .login-page .input {
     margin: 20px 0;
     width: 100%;

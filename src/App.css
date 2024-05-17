@@ -56,3 +56,17 @@
     
 }
 
+.info-form{
+    background-color: rgb(243, 243, 243);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 4px;
+    padding: 4px 3px;
+    color: rgb(101, 101, 101);
+}
+.info-form span{
+    font-size: 0.7em;
+    font-style: italic;
+    padding-left: 10px;
+}

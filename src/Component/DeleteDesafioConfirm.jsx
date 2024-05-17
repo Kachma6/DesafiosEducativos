@@ -47,11 +47,11 @@ export default function AlertDialog({eliminar, idDesafio, type}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Eliminar Desafio"}
+          {"Abandonar desafío"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-              Esta seguro de eliminar el Desafio seleccionado? {idDesafio}
+              ¿Esta seguro de eliminar el desafío seleccionado? 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
