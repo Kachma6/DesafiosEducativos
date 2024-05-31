@@ -24,9 +24,11 @@ import Typography from '@mui/material/Typography';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { createDesafio } from '../apis/DesafiosApi';
 import '../assets/FormCreateDesafio.css'
-import { Menu, Header, CardShow } from '../Component'
+import { Menu, Header, CardShow } from '../Component';
 import { getColor } from '../assets/colors';
 import InfoIcon from '@mui/icons-material/Info';
+import { ChooseImages } from '../Component/ChooseImages';
+import ErrorIcon from '@mui/icons-material/Error';
 const valuesOfReps = [
   {
     value: 2
@@ -120,7 +122,7 @@ export const FormCreateDesafio = () => {
   }
 
   const enviarCard = () => {
-    let newCard = { answer: '', question: '', idDesaCreated: { id: 1 } }
+    let newCard = { answer: '', question: '', idDesaCreated: { id: 1 }, url:"" }
     setDesafio({ ...desafio, cards: [...desafio.cards, newCard] })
   }
   const eliminarCard = (index) => {
@@ -129,15 +131,35 @@ export const FormCreateDesafio = () => {
     setDesafio({ ...desafio, cards: cardsAuxi })
   }
   const editarCard = (index, data) => {
+    console.log("datos que me llega a from", data)
     let cardsAuxi = desafio.cards.slice();
     cardsAuxi[index].answer = data.answer;
-    cardsAuxi[index].question = data.question
+    cardsAuxi[index].question = data.question;
+    cardsAuxi[index].url = data.url;
+    setDesafio({ ...desafio, cards: cardsAuxi })
+    validarCards();
+  }
+  const eliminarImagen = (index) => {
+    console.log("eliminarImagen", index)
+    let cardsAuxi = desafio.cards.slice();
+    cardsAuxi[index].url = "" ;
+    cardsAuxi[index].idImage = "";
+    setDesafio({ ...desafio, cards: cardsAuxi })
+  }
+  const editarImagen = (index, imagen) => {
+    console.log("datos que me llega a from", imagen)
+    let cardsAuxi = desafio.cards.slice();
+   
+    cardsAuxi[index].url = imagen.url;
+    cardsAuxi[index].idImage = imagen.id
     setDesafio({ ...desafio, cards: cardsAuxi })
     validarCards();
   }
   const guardarDesafio = async () => {
+    console.log("desafio enviando uno",desafio)
     let validation = validarFormulario();
     if (validarCards() === 0 && validation === 0) {
+      console.log("desafio enviado", desafio)
       const responseDb = await createDesafio(desafio);
       if (responseDb.status === 403 || responseDb.code == 'ERR_NETWORK' || responseDb.code === 'ERR_BAD_REQUEST') {
         setEstadoPeticion(false);
@@ -199,7 +221,7 @@ export const FormCreateDesafio = () => {
     }
     setShowAlert(false);
   };
-  console.log(desafio)
+  
   return (
     <div className='ctn-home-page' >
 
@@ -266,6 +288,7 @@ export const FormCreateDesafio = () => {
               </DialogContent>
             </BootstrapDialog>
             <div className='form-create-desafio'>
+            
               <TextField
                 autoFocus
                 required
@@ -343,7 +366,7 @@ export const FormCreateDesafio = () => {
               <div>
 
                 {
-                  desafioValidation.cards && <div className='message-error'> * Por favor llene todos los campos de las tarjetas</div>
+                  desafioValidation.cards &&  <div className='error-form'><ErrorIcon/><span>Llene todos los campos de las tarjetas de aprendizaje</span></div>
                 }
                 {
                   desafio.cards.map((c, index) => (
@@ -353,6 +376,8 @@ export const FormCreateDesafio = () => {
                       index={index}
                       eliminar={() => eliminarCard(index)}
                       editar={(index, data) => editarCard(index, data)}
+                      editarImagen = {(index, url) => editarImagen(index, url)}
+                      eliminarImagen={()=>eliminarImagen(index)}
                     />
 
                   ))

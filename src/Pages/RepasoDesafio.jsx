@@ -92,17 +92,24 @@ export const RepasoDesafio = () => {
 
       <div className='ctn-repaso'>
         <div className='ctn-repaso-close'>
-          {
-            cards.length > 0 && cardActual < cards.length && <div className='title-repaso'><span>Repasando: </span>{cards[0].idDesaCreated.nameDesa}</div>
-          }
+        
           <Modal action={abandonarRepaso} icon={<CloseIcon />} />
         </div>
-
+        <div>
+        {
+            cards.length > 0 && cardActual < cards.length && 
+            <div className='title-repaso'>
+              <div className='title'> {cards[0].idDesaCreated.nameDesa}</div>
+              <div className='description'> {cards[0].idDesaCreated.description}</div>
+             
+            </div>
+          }
+        </div>
         {
           cards.length > 0 && cardActual < cards.length && <div className='resumen'>
             <div className='resumen-repaso'>
-              <div className='correct'><CheckIcon /><span>{repaso.cardsCorrect}</span> Correctas</div>
-              <div className='incorrect'><CloseIcon /><span> {repaso.cardsIncorrect}</span> Incorrectas</div>
+              <div className='correct'><SentimentSatisfiedAltIcon/><span>{repaso.cardsCorrect}</span> Correctas</div>
+              <div className='incorrect'><SentimentVeryDissatisfiedIcon /><span> {repaso.cardsIncorrect}</span> Incorrectas</div>
               {/* <div>Total {cards.length}</div> */}
             </div>
           </div>

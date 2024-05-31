@@ -149,6 +149,22 @@ export const FormEditDesafio = () => {
     setDesafio({ ...desafio, cards: cardsAuxi })
     validarCards();
   }
+  const eliminarImagen = (index) => {
+    console.log("eliminarImagen", index)
+    let cardsAuxi = desafio.cards.slice();
+    cardsAuxi[index].url = "" ;
+    cardsAuxi[index].idImage = "";
+    setDesafio({ ...desafio, cards: cardsAuxi })
+  }
+  const editarImagen = (index, imagen) => {
+    console.log("datos que me llega a from", imagen)
+    let cardsAuxi = desafio.cards.slice();
+   
+    cardsAuxi[index].url = imagen.url;
+    cardsAuxi[index].idImage = imagen.id
+    setDesafio({ ...desafio, cards: cardsAuxi })
+    validarCards();
+  }
   const guardarDesafio = async () => {
     let validation = validarFormulario();
     if (validarCards() === 0 && validation === 0) {
@@ -232,7 +248,7 @@ export const FormEditDesafio = () => {
         </div>
         <div className='ctn-user'>
           <div className='ctn-user-title'>
-            <div className='ctn-user-title-h1'>Crea un nuevo Desafio para compartir!</div>
+            <div className='ctn-user-title-h1'>Editar el Desafio para compartir!</div>
             <div className='ctn-user-title-options'>
               {desafio.cards.length === 0 ?
                 <div></div> :
@@ -332,6 +348,8 @@ export const FormEditDesafio = () => {
                       index={index}
                       eliminar={() => eliminarCard(index)}
                       editar={(index, data) => editarCard(index, data)}
+                      editarImagen = {(index, url) => editarImagen(index, url)}
+                      eliminarImagen={()=>eliminarImagen(index)}
                     />
 
                   ))

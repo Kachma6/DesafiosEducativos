@@ -89,8 +89,22 @@
 	background-color:  rgb(161, 161, 161);
 }
 
-
-
+.ctn-coins{
+  display: flex;
+ 
+  
+}
+.ctn-coin{
+ 
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 0 6px;
+  background-color: rgb(241, 241, 241);
+  padding-left: 16px;
+  border-radius: 20px;
+  
+}
 
 
 

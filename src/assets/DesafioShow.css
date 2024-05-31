@@ -1,7 +1,7 @@
 .ctn-desafio {
     box-sizing: border-box;
     border-radius: 16px;
-    height: 300px;
+    height: 330px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -55,6 +55,7 @@
     line-height: 1.5em;
    
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 }
 
@@ -98,37 +99,35 @@
 }
 .ctn-letrero{
     display: flex;
-    justify-content: end;
-    max-height: 90px;
+    margin-top: 10px;
+    
 }
 .letrero{
-    margin-left: 10px;
-    border-radius: 8px;
+
+    border-radius: 10px;
     background-color: white;
   
     display: flex;
+    margin-right: 10px;
    
-    flex-direction: column;
-    padding: 6px;
+    
 }
 .letrero-let{
-    font-size: 0.6em;
-    border-radius:8px;
-    text-align: center;
-    background-color: white;
-    margin: 0px;
-    padding: 0px 6px;
-
+    font-size: 0.8em;
+    /* padding: 6px; */
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
 }
 .letrero-num{
-    font-size: 1.6em;
-    border-radius: 3px;
-    background-color: white;
-    padding: 5px;
+    font-size: 1.1em;
     display: flex;
+    padding:0 8px;
     align-items: center;
    justify-content: center;
    font-weight: 600;
+   
+   border-radius: 16px;
 }
 .btn.disable{
     background-color: rgb(168, 168, 168);

@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import '../assets/CardRepaso.css';
+import { getImagesById } from '../apis/pixabay';
 export const CardRepaso = ({ cardProp, enviarRespuesta, color }) => {
   // const [cardRepaso, setCardRepaso] = useState(cardProp);
   const [respuesta, setRespuesta] = useState('');
+  const [image, setImage] = useState("");
+  
+
+  useEffect(()=>{
+    getImagen(cardProp.idImage)
+  },[cardProp])
   const onHandleSubmit = (e) => {
     e.preventDefault();
     if (respuesta === cardProp.answer) {
@@ -31,6 +38,14 @@ export const CardRepaso = ({ cardProp, enviarRespuesta, color }) => {
     }
     
   }
+  const getImagen = async (id) => {
+    const response = await getImagesById(id);
+    console.log("getImage",response)
+    setImage(response.hits[0])
+    // return response.hits[0].webformatURL
+    
+  }
+ 
   return (
     <div className='ctn-card-repaso'>
   
@@ -40,6 +55,12 @@ export const CardRepaso = ({ cardProp, enviarRespuesta, color }) => {
             <div className='card-body-part pregunta'>
               <div className='card-body-title'>Pregunta : </div>
               <div className='card-body-text'>{cardProp.question}</div>
+              {
+                image.id === cardProp.idImage && <div className='card-body-image'><img src={image.webformatURL} height={"100px"}></img></div> 
+              }
+              
+              {/* <div className='card-body-image'><img src={cardProp.url} height={"100px"}></img></div> */}
+              {/* <div className='card-body-image'><img src={getImagen(cardProp.idImage)} height={"100px"}></img></div> */}
             </div>
             <div className='card-body-part respuesta'>
               <div className='card-body-title'>Respuesta : </div>

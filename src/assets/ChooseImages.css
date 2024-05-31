@@ -1,0 +1,37 @@
+.ctn-grid-images{
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.grid-imagen{
+    cursor: pointer;
+   
+}
+.grid-imagen img:hover{
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.grid-imagen img{
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+}
+
+/* css of imagenCard */
+.ctn-imagen-show{
+    
+    padding: 6px;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+.grid-imagen-show{
+   
+}
+.close-imagen{
+ 
+ text-align: end;
+}

@@ -11,10 +11,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import logo from '../Images/logo.png'
 import { getColor } from '../assets/colors';
 import '../assets/LoginPage.css'
-import imagen from '../Images/login2.png'
+
 
 export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -67,7 +66,6 @@ export const LoginPage = () => {
     setUserNotFound('');
     if (e.target.value === '') {
       setLogin({ ...login, [name]: { ...login[name], error: true, value: value, errorMessage: "Campo Obligatorio" } })
-      console.log("entra")
     } else {
       setLogin({ ...login, [name]: { ...login[name], error: false, value: value, errorMessage: '' } })
     }
@@ -116,7 +114,6 @@ export const LoginPage = () => {
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
-                        // onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
                         {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -161,9 +158,6 @@ export const LoginPage = () => {
             <div className='ctn-icon-login-text'>Diviertate y desafiate mientras aprendes con el método Active Recall!</div>
           </div>
 
-          {/* <div>
-          <img src={imagen} style={{width:"80%"}}></img>
-        </div> */}
 
         </div>
       </div>

@@ -86,3 +86,16 @@ export const deleteCreateDesafio = async (id) => {
         return error;
     }
 }
+
+export const getScore = async (idUser) => {
+    const datos = JSON.parse(localStorage.getItem('user'));
+    const headers = `Bearer ${datos.token}`;
+    try{
+        const response = await instance.get(`/score/${idUser}`,{
+            headers: { Authorization: headers}
+        });
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}

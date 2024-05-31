@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { Menu , Suscribe, Header, DesafioShow} from '../Component'
 import { useParams } from 'react-router-dom';
-import { getDesafiosJoinByUserId} from '../apis/DesafiosApi';
+import { getDesafiosJoinByUserId, getScore} from '../apis/DesafiosApi';
 import { desuscribeDesafio } from '../apis/UserApi.js';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { getColor } from '../assets/colors.js';
 import { AlertStatus } from '../Component/AlertStatus.jsx';
 import dayjs from 'dayjs';
+import coins from '../Images/coin.png'
+import bad from '../Images/bad.png'
+import Tooltip from '@mui/material/Tooltip';
 export const DesafiosJoin = () => {
   const { user_id } = useParams();
   const [listDesafiosJoin, setListDesafiosJoin] = useState([])
+  const [score, setScore] = useState(0);
   useEffect(() => {
     getDesafios();
-
+    getScoreUser();
   }, [])
+  const getScoreUser = async () => {
+     const response = await getScore(user_id);
+     console.log("score", response)
+     setScore(response)
+  }
   const [estadoPeticion, setEstadoPeticion] = useState(true)
   const [open1, setOpen1] = useState(false);
 
@@ -72,7 +81,19 @@ export const DesafiosJoin = () => {
         <div className='ctn-user'>
           <div className='ctn-user-title'>
             <h2>Desafios por terminar!</h2>
-           
+            <div className='ctn-coins'>
+              
+              <Tooltip className='ctn-coin' title="Monedas ganadas">
+                <p>{score}</p>
+                <img src={coins} style={{ width:"30px", objectFit:"cover", margin:"10px"}}></img>
+              </Tooltip>
+              {/* <Tooltip className='ctn-coin' title="Desafios perdidos">
+              <p>36</p>
+                <img src={bad} style={{ width:"30px", objectFit:"cover", margin:"10px"}}></img>
+              </Tooltip> */}
+         
+             
+            </div>
           </div>
           <div className='ctn-user-body'>
             <div className='ctn-user-container-grid'>

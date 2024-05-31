@@ -48,7 +48,11 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
   return (
     <div className='cctn-desafio' style={{ background: color.back }}>
       <div className='cctn-desafio-info-head'>
+        
         <div className='cctn-state'>{calculateState()}</div>
+       
+      
+       
         <div
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}
@@ -90,27 +94,23 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
         </div>
         <div className='cctn-desafio-info-body'>
 
-          <div>
-
+          <div className='cctn-datos'>
+            <div className='cctn-datos-box'>
+            <div className='datos-box'><span>Dias faltantes : </span> {calculateStateDays() >= 0 ? calculateStateDays() : "0"}</div>
+              <div className='datos-box'><span> Total Repasos : </span> {desafio.numRep}</div>
+            </div>
+            <div className='info'><span>Instrucción : </span>{desafio.description}</div>
             <div className='info'><span>Inicio : </span>
               {dayjs(`${desafio.created[0]}-${desafio.created[1]}-${desafio.created[2]}`).locale("es").format('DD MMMM [de] YYYY')}</div>
             <div className='info'><span>Finaliza : </span> {dayjs(desafio.finishedDate.slice(0, 10)).locale("es").format('DD MMMM [de] YYYY')}</div>
+
           </div>
+
 
         </div>
 
       </div>
       <div className='cctn-desafio-btns'>
-
-
-
-        {/* <div className='cctn-desafio-numbers'>
-
-          <div className='cctn-state state'><span>{desafio.numMembers}</span></div>
-          <div className='cctn-state state'><span>{desafio.numCards}</span></div>
-
-        </div> */}
-
         <div className='cctn-letrero' >
           <div className='cletrero' >
             <div className='cletrero-let'><PersonOutlineIcon style={{ color: color.letter }} /></div>
@@ -122,17 +122,27 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
 
             <div className='cletrero-num' style={{ color: color.letter }}>{desafio.numCards}</div>
           </div>
-          <div className='cletrero' >
-            <div className='letrero-let' style={{ color: color.letter }}>Dias Faltantes</div>
 
-            <div className='cletrero-num' style={{ color: color.letter }}>{calculateStateDays()}</div>
-          </div>
-          <div className='cletrero' >
-            <div className='letrero-let' style={{ color: color.letter }}>Total Repasos</div>
-
-            <div className='cletrero-num' style={{ color: color.letter }}>{desafio.numRep}</div>
-          </div>
         </div>
+        {/* <div className='' >
+          <div className='' style={{ color: color.letter }}>Dias Faltantes</div>
+
+          <div className='' style={{ color: color.letter }}>{calculateStateDays() >= 0 ? calculateStateDays() : "0"}</div>
+        </div>
+        <div className='' >
+          <div className='' style={{ color: color.letter }}>Total Repasos</div>
+
+          <div className='' style={{ color: color.letter }}>{desafio.numRep}</div>
+        </div> */}
+
+        {/* <div className='cctn-desafio-numbers'>
+
+          <div className='cctn-state state'><span>{desafio.numMembers}</span></div>
+          <div className='cctn-state state'><span>{desafio.numCards}</span></div>
+
+        </div> */}
+
+
 
       </div>
 

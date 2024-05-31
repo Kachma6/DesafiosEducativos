@@ -6,8 +6,24 @@ import { BarraRepasos } from './BarraRepasos';
 import dayjs from 'dayjs';
 import DeleteDesafioConfirm from '../Component/DeleteDesafioConfirm'
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+export const calculateStateString = (date,desafio) => {
+
+    if (dayjs(date).isBefore(dayjs()) || !isComplete(desafio)) {
+        return 'Finalizado'
+    } else {
+        return 'En proceso'
+    }
+
+};
+export const isComplete = (desafio) => {
+   
+    if(desafio.repsDesa.length >= desafio.desaCreated.numRep){
+        return false;
+    }
+    return true;
+}
 export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
     const { user_id } = useParams();
     const navigate = useNavigate();
@@ -28,22 +44,17 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
     const calculateState = () => {
         let date = dayjs(desafio.desaCreated.finishedDate.slice(0, 10))
         let today = dayjs();
-
-        return Math.ceil((date - today) / (1000 * 3600 * 24));
-
-    }
-    const calculateStateString = () => {
-        console.log("finalizado " , dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isBefore(dayjs()) )
-        console.log(dayjs(desafio.desaCreated.finishedDate.slice(0, 10)))
-        console.log(dayjs().isSame(desafio.desaCreated.finishedDate.slice(0, 10), 'date'))
-        console.log("finalizado is today " , dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isSame(dayjs()) )
-        if (dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isBefore(dayjs()) || !isComplete()) {
-            return 'Finalizado'
-        } else {
-            return 'En proceso'
+        let days =  Math.ceil((date - today) / (1000 * 3600 * 24));
+        if(days <= 0){
+            return 0;
+        }else{
+            return days;
         }
+        
 
-    }
+    };
+  
+    
     const isValidDate = () => {
         if (dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isBefore(dayjs())) {
             return false
@@ -57,21 +68,12 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
         navigate(`/${user_id}/desafios-join/${desafio.id}/desa-created/${desafio.desaCreated.id}`)
 
     }
-    const isComplete = () => {
-        console.log(desafio.repsDesa.length)
-        console.log(desafio.desaCreated.numRep)
-        if(desafio.repsDesa.length >= desafio.desaCreated.numRep){
-            console.log("entro")
-            return false;
-        }
-        return true;
-    }
-    console.log("isAvailable", isAvailable);
+    
     return (
 
         <div className='ctn-desafio' style={{ background: color.back }}>
             <div className='ctn-desafio-info-head'>
-                <div className='ctn-state'>{calculateStateString()}</div>
+                <div className='ctn-state'>{calculateStateString(desafio.desaCreated.finishedDate.slice(0, 10), desafio)}</div>
                 <div
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
@@ -113,7 +115,7 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
 
                     <div className='ctn-letrero' >
                         <div className='letrero' >
-                            <div className='letrero-let'>Dias Faltantes</div>
+                            <div className='letrero-let'>Dias faltantes</div>
                             {/* <div className='letrero-let'></div> */}
                             <div className='letrero-num' style={{ color: color.letter }}>{calculateState()}</div>
                         </div>
@@ -139,7 +141,7 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
 
                 <div className='ctn-desafio-numbers'>
                     {
-                        isAvailable && isComplete() && isValidDate() ?
+                        isAvailable && isComplete(desafio) && isValidDate() ?
                             <div className='btn' onClick={repasar}>
                                 Repasar
                             </div> :
@@ -157,3 +159,4 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
         </div>
     )
 }
+

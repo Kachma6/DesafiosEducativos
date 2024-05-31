@@ -58,7 +58,13 @@
     font-style: italic;
     font-size: 0.7em;
 } 
-
+.card-body-image{
+    
+    text-align: center;
+}
+.card-body-image img{
+    border-radius: 8px;
+}
 .btn-repaso{
     margin-top: 10px;
    
