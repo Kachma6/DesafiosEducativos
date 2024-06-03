@@ -1,7 +1,7 @@
 import { instance } from "./configs/axiosConfig";
 
 export const getDesafiosJoinByUserId = async (userId) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.get(`/inscribirse/${userId}`,{
@@ -13,7 +13,7 @@ export const getDesafiosJoinByUserId = async (userId) => {
     }
 }
 export const getDesafiosCreated = async (userId) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
 
     try{
@@ -26,7 +26,7 @@ export const getDesafiosCreated = async (userId) => {
     }
 }
 export const getDesafioCreatedById = async (id) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.get(`/created-desa/${id}`,{
@@ -39,7 +39,7 @@ export const getDesafioCreatedById = async (id) => {
 }
 
 export const getDesafioComplete = async (desafioId) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.get(`/created-desa/${desafioId}/complete`,{
@@ -51,7 +51,7 @@ export const getDesafioComplete = async (desafioId) => {
     }
 }
 export const createDesafio = async (desafio) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.post(`/created-desa`, desafio, {
@@ -63,7 +63,7 @@ export const createDesafio = async (desafio) => {
     }
 }
 export const editCreateDesafio = async (registerForm, id) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.put(`/created-desa/${id}`, registerForm,{
@@ -75,7 +75,7 @@ export const editCreateDesafio = async (registerForm, id) => {
     }
 }
 export const deleteCreateDesafio = async (id) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.delete(`/created-desa/${id}`,{
@@ -88,7 +88,7 @@ export const deleteCreateDesafio = async (id) => {
 }
 
 export const getScore = async (idUser) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.get(`/score/${idUser}`,{

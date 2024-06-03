@@ -3,7 +3,7 @@ import '../assets/Header.css'
 import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 export const Header = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const showMenu = () => {
     let menuBtn = document.getElementById('menuIcon');
     if(menuBtn.classList.contains('activo')){

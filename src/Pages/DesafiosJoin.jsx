@@ -21,7 +21,7 @@ export const DesafiosJoin = () => {
   }, [])
   const getScoreUser = async () => {
      const response = await getScore(user_id);
-     console.log("score", response)
+    
      setScore(response)
   }
   const [estadoPeticion, setEstadoPeticion] = useState(true)
@@ -30,7 +30,7 @@ export const DesafiosJoin = () => {
   const getDesafios = async () => {
     const data = await getDesafiosJoinByUserId(user_id);
     setListDesafiosJoin(data);
-    console.log(data)
+    
   }
   const abandonar = async (id) => {
     const response = await desuscribeDesafio(id);
@@ -58,9 +58,9 @@ export const DesafiosJoin = () => {
 
     for(let i = 0; i< listReps.length;i++){
 
-      console.log(listReps[i].dateRep[0] ===dayjs().year() &&  listReps[i].dateRep[1] === dayjs().month() && listReps[i].dateRep[2] === dayjs().date())
+     
       if( listReps[i].dateRep[0] ===dayjs().year() &&  listReps[i].dateRep[1] === dayjs().month()+1 && listReps[i].dateRep[2] === dayjs().date() ){
-        console.log("hola")
+        
         return false;
       }
     }
@@ -87,10 +87,7 @@ export const DesafiosJoin = () => {
                 <p>{score}</p>
                 <img src={coins} style={{ width:"30px", objectFit:"cover", margin:"10px"}}></img>
               </Tooltip>
-              {/* <Tooltip className='ctn-coin' title="Desafios perdidos">
-              <p>36</p>
-                <img src={bad} style={{ width:"30px", objectFit:"cover", margin:"10px"}}></img>
-              </Tooltip> */}
+             
          
              
             </div>

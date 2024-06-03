@@ -3,14 +3,10 @@ import TextField from '@mui/material/TextField';
 import '../assets/CardShow.css'
 import Avatar from '@mui/material/Avatar';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { getColor } from '../assets/colors.js';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { SearchImage } from './SearchImage.jsx';
-import { Image } from './Image.jsx';
 import { ImageCard } from './ImageCard.jsx';
-import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 export const CardShow = ({ cardData, index, editar, eliminar,editarImagen, eliminarImagen }) => {
     
     const myCard = cardData
@@ -39,7 +35,6 @@ export const CardShow = ({ cardData, index, editar, eliminar,editarImagen, elimi
         
         setCardAux({...cardAux, url: imagen.url})
         editarImagen(index, imagen);
-        console.log("editando imagen de card", cardAux)
         
     }
     const eliminarCard = (e) => {
@@ -53,8 +48,7 @@ export const CardShow = ({ cardData, index, editar, eliminar,editarImagen, elimi
         editar(index, cardAux)
     }
     const onHandleBlur = () => {
-        console.log("onblour", cardAux)
-        console.log(isOnBlur)
+    
         validarInputs();
         editar(index, cardAux)
     }
@@ -69,17 +63,14 @@ export const CardShow = ({ cardData, index, editar, eliminar,editarImagen, elimi
         }
 
         setIsValidation(cardsAuxiliar)
-      
 
     }
     
     const eliminarImagenCard = () => {
         setCardAux({...cardAux, url: ""})
-        console.log("eliminando imagen......");
         eliminarImagen(index);
     }
-    console.log(cardData);
-    console.log(cardAux);
+ 
     return (
         <div className='card-show' >
             <div className='card-show-header'>
@@ -87,11 +78,7 @@ export const CardShow = ({ cardData, index, editar, eliminar,editarImagen, elimi
                     Tarjeta : {index + 1}
                 </div>
                 <div className='ctn-card-btns'>
-{/* 
-                    <Avatar sx={{ bgcolor: "black", marginRight: "15px" }}>
-                       
-                        <SearchImage getImagenChoose={getImagenChoose} />
-                    </Avatar> */}
+
                     
                     <Tooltip title="Agregar imagen">
                         <Avatar sx={{ bgcolor: "black", marginRight: "15px" }}>

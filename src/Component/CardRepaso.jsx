@@ -40,8 +40,7 @@ export const CardRepaso = ({ cardProp, enviarRespuesta, color }) => {
   }
   const getImagen = async (id) => {
     const response = await getImagesById(id);
-    console.log("getImage",response)
-    setImage(response.hits[0])
+       setImage(response.hits[0])
     // return response.hits[0].webformatURL
     
   }

@@ -93,7 +93,8 @@ export const FormEditDesafio = () => {
   const [isLoading, setIsLoading] = useState(true)
   const getDesafios = async () => {
       const newDesafios = await getDesafioComplete(desafio_id);
-      console.log("obtenido del request",newDesafios)
+      newDesafios.finishedDate = newDesafios.finishedDate.slice(0,10)
+     
       setDesafio(newDesafios);
       setIsLoading(false);
   }
@@ -234,7 +235,7 @@ export const FormEditDesafio = () => {
     }
     setShowAlert(false);
   };
-  console.log(desafio)
+  
   return (
     <div className='ctn-home-page' >
 

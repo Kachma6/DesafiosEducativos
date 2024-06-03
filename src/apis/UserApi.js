@@ -32,7 +32,7 @@ export const createNewUser = async (newUser) => {
 }
 
 export const suscribeDesafio = async (codigo) =>{
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.post(`/inscribirse`, codigo,{
@@ -45,7 +45,7 @@ export const suscribeDesafio = async (codigo) =>{
 }
 
 export const desuscribeDesafio = async (id) =>{
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.delete(`/inscribirse/${id}`,{

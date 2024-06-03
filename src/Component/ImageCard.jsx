@@ -3,6 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 export const ImageCard = ({imagen, eliminar}) => {
   console.log("desde imagencard",imagen)
   return (
+  
     <div className='ctn-imagen-show'>
       
         <div className='close-imagen' onClick={()=>eliminar()}><CloseIcon/></div>

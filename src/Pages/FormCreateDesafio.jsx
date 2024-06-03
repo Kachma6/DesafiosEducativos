@@ -131,7 +131,7 @@ export const FormCreateDesafio = () => {
     setDesafio({ ...desafio, cards: cardsAuxi })
   }
   const editarCard = (index, data) => {
-    console.log("datos que me llega a from", data)
+    
     let cardsAuxi = desafio.cards.slice();
     cardsAuxi[index].answer = data.answer;
     cardsAuxi[index].question = data.question;
@@ -140,14 +140,14 @@ export const FormCreateDesafio = () => {
     validarCards();
   }
   const eliminarImagen = (index) => {
-    console.log("eliminarImagen", index)
+    
     let cardsAuxi = desafio.cards.slice();
     cardsAuxi[index].url = "" ;
     cardsAuxi[index].idImage = "";
     setDesafio({ ...desafio, cards: cardsAuxi })
   }
   const editarImagen = (index, imagen) => {
-    console.log("datos que me llega a from", imagen)
+    
     let cardsAuxi = desafio.cards.slice();
    
     cardsAuxi[index].url = imagen.url;
@@ -156,10 +156,10 @@ export const FormCreateDesafio = () => {
     validarCards();
   }
   const guardarDesafio = async () => {
-    console.log("desafio enviando uno",desafio)
+   
     let validation = validarFormulario();
     if (validarCards() === 0 && validation === 0) {
-      console.log("desafio enviado", desafio)
+     
       const responseDb = await createDesafio(desafio);
       if (responseDb.status === 403 || responseDb.code == 'ERR_NETWORK' || responseDb.code === 'ERR_BAD_REQUEST') {
         setEstadoPeticion(false);
@@ -183,7 +183,7 @@ export const FormCreateDesafio = () => {
       }
 
     } else {
-      console.log("No se guardo nada")
+ 
       setEstadoPeticion(false);
       setShowAlert(true)
     }
@@ -317,7 +317,6 @@ export const FormCreateDesafio = () => {
                 variant="outlined"
                 value={desafio.description}
                 onChange={onChangeData}
-                onBlur={() => console.log("onblur")}
                 error={desafioValidation.description}
                 helperText={desafioValidation.description ? "Es obligatorio" : ''}
               />

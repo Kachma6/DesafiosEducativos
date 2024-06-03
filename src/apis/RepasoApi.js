@@ -1,7 +1,7 @@
 import { instance }  from "../apis/configs/axiosConfig";
 
 export const postRepaso = async (repaso) =>{
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.post(`/rep-desa`, repaso,{
@@ -13,7 +13,7 @@ export const postRepaso = async (repaso) =>{
     }
 }
 export const getCards = async (desafioId) => {
-    const datos = JSON.parse(localStorage.getItem('user'));
+    const datos = JSON.parse(sessionStorage.getItem('user'));
     const headers = `Bearer ${datos.token}`;
     try{
         const response = await instance.get(`/cards/${desafioId}`,{

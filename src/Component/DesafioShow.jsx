@@ -9,8 +9,10 @@ import Menu from '@mui/material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 export const calculateStateString = (date,desafio) => {
-
-    if (dayjs(date).isBefore(dayjs()) || !isComplete(desafio)) {
+    
+    const tomorrow = dayjs(date).add(1,'day');
+    
+    if ( tomorrow.isBefore(dayjs()) || !isComplete(desafio)) {
         return 'Finalizado'
     } else {
         return 'En proceso'
@@ -55,8 +57,9 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
     };
   
     
-    const isValidDate = () => {
-        if (dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).isBefore(dayjs())) {
+    const isValidDate = (date) => {
+        const tomorrow = dayjs(date).add(1,'day');
+        if (tomorrow.isBefore(dayjs())) {
             return false
         } else {
             return true
@@ -108,7 +111,7 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
                     <div>
                         <div className='info'><span>Creado por : </span>{`${desafio.desaCreated.userCreated.firstName} ${desafio.desaCreated.userCreated.lastName}`}</div>
                         <div className='info'>
-                            <span>Fecha finalizacion : </span>{dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).format('DD MMMM YYYY')}
+                            <span>Fecha finalización : </span>{dayjs(desafio.desaCreated.finishedDate.slice(0, 10)).locale('es').format('DD  MMMM YYYY')}
                         </div>
                     </div>
 
@@ -141,7 +144,7 @@ export const DesafioShow = ({ desafio, abandonar, color, isAvailable }) => {
 
                 <div className='ctn-desafio-numbers'>
                     {
-                        isAvailable && isComplete(desafio) && isValidDate() ?
+                        isAvailable && isComplete(desafio) && isValidDate(desafio.desaCreated.finishedDate.slice(0, 10)) ?
                             <div className='btn' onClick={repasar}>
                                 Repasar
                             </div> :

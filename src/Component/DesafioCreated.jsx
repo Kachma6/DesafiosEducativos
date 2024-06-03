@@ -9,7 +9,8 @@ import DeleteDesafioConfirm from '../Component/DeleteDesafioConfirm';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ShareCode from '../Component/ShareCode'
+import ShareCode from '../Component/ShareCode';
+import 'dayjs/locale/es';
 export const DesafioCreated = ({ desafio, eliminar, color }) => {
 
   const { user_id } = useParams();
@@ -44,7 +45,7 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
     return Math.ceil((date - today) / (1000 * 3600 * 24));
 
   }
-  console.log(desafio)
+ 
   return (
     <div className='cctn-desafio' style={{ background: color.back }}>
       <div className='cctn-desafio-info-head'>
@@ -101,8 +102,8 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
             </div>
             <div className='info'><span>Instrucción : </span>{desafio.description}</div>
             <div className='info'><span>Inicio : </span>
-              {dayjs(`${desafio.created[0]}-${desafio.created[1]}-${desafio.created[2]}`).locale("es").format('DD MMMM [de] YYYY')}</div>
-            <div className='info'><span>Finaliza : </span> {dayjs(desafio.finishedDate.slice(0, 10)).locale("es").format('DD MMMM [de] YYYY')}</div>
+              {dayjs(`${desafio.created[0]}-${desafio.created[1]}-${desafio.created[2]}`).locale('es').format('DD [de] MMMM [de] YYYY')}</div>
+            <div className='info'><span>Finaliza : </span> {dayjs(desafio.finishedDate.slice(0, 10)).locale("es").format('DD [de] MMMM [de] YYYY')}</div>
 
           </div>
 
@@ -124,23 +125,7 @@ export const DesafioCreated = ({ desafio, eliminar, color }) => {
           </div>
 
         </div>
-        {/* <div className='' >
-          <div className='' style={{ color: color.letter }}>Dias Faltantes</div>
-
-          <div className='' style={{ color: color.letter }}>{calculateStateDays() >= 0 ? calculateStateDays() : "0"}</div>
-        </div>
-        <div className='' >
-          <div className='' style={{ color: color.letter }}>Total Repasos</div>
-
-          <div className='' style={{ color: color.letter }}>{desafio.numRep}</div>
-        </div> */}
-
-        {/* <div className='cctn-desafio-numbers'>
-
-          <div className='cctn-state state'><span>{desafio.numMembers}</span></div>
-          <div className='cctn-state state'><span>{desafio.numCards}</span></div>
-
-        </div> */}
+        
 
 
 

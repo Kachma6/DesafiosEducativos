@@ -28,7 +28,7 @@ export const RepasoDesafio = () => {
 
 
   const enviarRespuesta = (cantidad) => {
-    console.log(cantidad);
+   
     if (cantidad == 1) {
       setRepaso({ ...repaso, cardsCorrect: repaso.cardsCorrect + 1 })
     } else {
@@ -39,10 +39,9 @@ export const RepasoDesafio = () => {
     // setCardActual(cardActual + 1);
   }
   const onClickNext = () => {
-    console.log("card actual ", cardActual);
-    console.log("cards", cards.length)
+    
     if (cardActual === cards.length - 1) {
-      console.log("enviando repaso")
+      
       enviarRepaso()
     }
 
@@ -72,7 +71,7 @@ export const RepasoDesafio = () => {
   const enviarRepaso = async () => {
     const response = await postRepaso(repaso);
 
-    console.log(response);
+   
 
     // navigate(-1);
   }
@@ -80,8 +79,6 @@ export const RepasoDesafio = () => {
     navigate(-1);
   }
 
-  console.log(isLoading)
-  console.log(cards, cardActual)
 
 
   return (

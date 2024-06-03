@@ -48,7 +48,7 @@ export const LoginPage = () => {
         } else {
           if (user.status === 200) {
             navigate(`${user.data.id}/desafios-join`);
-            localStorage.setItem('user', JSON.stringify(user.data));
+            sessionStorage.setItem('user', JSON.stringify(user.data));
           }
 
         }

@@ -33,6 +33,7 @@
     padding-bottom: 6px;
     font-size: 0.9em;
     color: rgb(168, 166, 166);
+    text-transform: none;
 }
 .title-repaso span{
     font-style: italic;
